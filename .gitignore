@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Internal artifacts — never publish (date-stamped audit folders, local agent context)
+DESIGN-IS-*/
+CLAUDE.md
+
+# Legacy single-page site (superseded 2026-06; kept locally for reference)
+website/
