@@ -1,10 +1,10 @@
-# Jetson Rocket Property Management — jetsonrocket.net
+# Jetson Rocket Property Management — jetsonrocket.org
 
 Static marketing site for Jetson Rocket PM, an owner-operated property management
 service working in the San Francisco Bay Area, Southern California, Central Texas,
 and Michoacán, México.
 
-Plain HTML/CSS/JS — no build step. Hosted on GitHub Pages behind `jetsonrocket.net`.
+Plain HTML/CSS/JS — no build step. Hosted on GitHub Pages behind `jetsonrocket.org`.
 
 ## Structure
 
