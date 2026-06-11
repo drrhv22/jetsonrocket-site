@@ -43,7 +43,7 @@ Local preview first: `python3 -m http.server 8000` → http://localhost:8000
 | File | Purpose |
 |---|---|
 | `index.html` | Landing: terminal hero, bento modules, coverage network canvas + matrix, how it works, CTA |
-| `services.html` | Five detailed service sections (anchors: #operations #placement #maintenance #compliance #reporting) |
+| `services.html` | Five detailed service sections (anchors: #operations #listing #maintenance #compliance #reporting) |
 | `owners.html` | Owner benefits, reporting, onboarding, FAQ |
 | `contact.html` | Form + mailto fallback |
 | `404.html` | Not-found (uses root-absolute paths on purpose) |

@@ -102,7 +102,7 @@
           </div>
           <ul class="proc">
             <li><a href="services.html#operations"><span class="name">property care &amp; oversight</span><span class="leader"></span><span class="state"><span class="dot" style="--d:0s"></span>active</span></a></li>
-            <li><a href="services.html#placement"><span class="name">listing &amp; screening support</span><span class="leader"></span><span class="state"><span class="dot" style="--d:.3s"></span>active</span></a></li>
+            <li><a href="services.html#listing"><span class="name">listing &amp; screening support</span><span class="leader"></span><span class="state"><span class="dot" style="--d:.3s"></span>active</span></a></li>
             <li><a href="services.html#maintenance"><span class="name">maintenance &amp; vendor management</span><span class="leader"></span><span class="state"><span class="dot" style="--d:.6s"></span>active</span></a></li>
             <li><a href="services.html#compliance"><span class="name">lease &amp; compliance support</span><span class="leader"></span><span class="state"><span class="dot" style="--d:.9s"></span>active</span></a></li>
             <li><a href="services.html#reporting"><span class="name">owner reporting</span><span class="leader"></span><span class="state"><span class="dot" style="--d:1.2s"></span>monthly</span></a></li>
@@ -113,7 +113,7 @@
         <div class="module span-7">
           <div class="module-head">
             <h3>Your monthly statement</h3>
-            <span class="data">owner-report.pdf</span>
+            <span class="data">monthly · by email</span>
           </div>
           <ul class="ledger">
             <li><span>income recorded</span><span class="leader"></span><span class="ok">✓ itemized</span></li>
@@ -169,7 +169,7 @@
 
       <div class="table-wrap">
         <table>
-          <caption>Coverage matrix</caption>
+          <caption>Coverage matrix <span class="data table-hint" aria-hidden="true">scroll →</span></caption>
           <thead>
             <tr>
               <th scope="col">Region</th>
@@ -230,7 +230,7 @@
         </li>
         <li class="rail-step">
           <h3>Ongoing care</h3>
-          <p>Repairs handled, issues caught early, and a clear report in your inbox every month.</p>
+          <p>Repairs handled, preventive upkeep suggested, and a clear report in your inbox every month.</p>
         </li>
       </ol>
     </div>
@@ -378,9 +378,15 @@ menuBtn.addEventListener('click', () => {
         ctx.fillText(n.label, p.x + n.r + 12, p.y + 4);
       }
     });
-
-    if (!reduceMotion) raf = requestAnimationFrame(draw);
   }
+
+  // single animation loop — draw() never self-schedules, so resize can't stack loops
+  function frame(now) {
+    draw(now);
+    raf = requestAnimationFrame(frame);
+  }
+  function start() { if (!raf && !reduceMotion) raf = requestAnimationFrame(frame); }
+  function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
 
   // hover tooltips (real region facts only)
   canvas.addEventListener('pointermove', e => {
@@ -396,10 +402,8 @@ menuBtn.addEventListener('click', () => {
       tip.style.left = p.x + 'px';
       tip.style.top = p.y + 'px';
       tip.classList.add('show');
-      canvas.style.cursor = 'pointer';
     } else {
       tip.classList.remove('show');
-      canvas.style.cursor = 'default';
     }
     if (reduceMotion) draw(performance.now());
   });
@@ -408,14 +412,18 @@ menuBtn.addEventListener('click', () => {
     tip.classList.remove('show');
     if (reduceMotion) draw(performance.now());
   });
+  addEventListener('keydown', e => {
+    if (e.key === 'Escape' && hovered >= 0) {
+      hovered = -1;
+      tip.classList.remove('show');
+      if (reduceMotion) draw(performance.now());
+    }
+  });
 
   // only animate while visible
   if (!reduceMotion) {
     new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        if (en.isIntersecting) { if (!raf) raf = requestAnimationFrame(draw); }
-        else if (raf) { cancelAnimationFrame(raf); raf = null; }
-      });
+      entries.forEach(en => en.isIntersecting ? start() : stop());
     }).observe(canvas);
   }
 
