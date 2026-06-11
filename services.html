@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Services — Jetson Rocket Property Management</title>
 <meta name="description" content="Property care and oversight, listing and screening support, maintenance and vendor management, lease and compliance support, and monthly owner reporting.">
-<meta name="theme-color" content="#1a1a2e">
+<meta name="theme-color" content="#030712">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Services — Jetson Rocket Property Management">
 <meta property="og:description" content="Property care and oversight, maintenance coordination, vendor management, and owner reporting — in English and Spanish.">
 <meta property="og:url" content="https://jetsonrocket.org/services.html">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='70' font-size='62' font-family='sans-serif' font-weight='700' fill='white' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230B0F19'/%3E%3Crect x='1.5' y='1.5' width='97' height='97' rx='20.5' fill='none' stroke='%2322D3EE' stroke-opacity='.45' stroke-width='3'/%3E%3Ctext x='50' y='68' font-size='56' font-family='monospace' font-weight='700' fill='%2322D3EE' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,30 +23,37 @@
 <header>
   <div class="container">
     <nav class="nav" aria-label="Main">
-      <a class="brand" href="index.html">Jetson Rocket PM</a>
-      <ul>
+      <a class="brand" href="index.html">Jetson Rocket <span class="brand-tag">[PM]</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-tabs" aria-label="Menu">≡</button>
+      <ul class="nav-tabs" id="nav-tabs">
+        <li><a href="index.html">Overview</a></li>
         <li><a href="services.html" aria-current="page">Services</a></li>
         <li><a href="owners.html">For Owners</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+      <div class="nav-right">
+        <span class="status-badge"><span class="dot" aria-hidden="true"></span> Accepting new properties</span>
+        <a class="btn btn-primary" href="contact.html">Get in touch</a>
+      </div>
     </nav>
   </div>
 </header>
 
 <main id="main">
 
-  <section class="hero">
+  <section class="hero-inner">
     <div class="container">
-      <p class="kicker">Services</p>
+      <p class="crumb">services</p>
       <h1>Everything a rental needs, handled by one accountable person</h1>
       <p class="lede">No departments, no ticket queues. The person who takes on your property is the person who runs it — these are the things we take off your plate.</p>
     </div>
   </section>
 
-  <section class="section-alt">
+  <section>
     <div class="container">
 
       <article class="service-block" id="operations" aria-labelledby="operations-h">
+        <span class="slug" aria-hidden="true">care/oversight — active in all regions</span>
         <h2 id="operations-h">Property care &amp; oversight</h2>
         <p>The day-to-day needs of your rental, documented as we go.</p>
         <ul>
@@ -58,6 +65,7 @@
       </article>
 
       <article class="service-block" id="placement" aria-labelledby="placement-h">
+        <span class="slug" aria-hidden="true">listing-support — your decisions, our legwork</span>
         <h2 id="placement-h">Listing &amp; screening support</h2>
         <p>Finding a tenant worth keeping is most of the job — we support you through it, and the decisions stay yours.</p>
         <ul>
@@ -69,6 +77,7 @@
       </article>
 
       <article class="service-block" id="maintenance" aria-labelledby="maintenance-h">
+        <span class="slug" aria-hidden="true">maintenance/vendors — verified before paid</span>
         <h2 id="maintenance-h">Maintenance &amp; vendor management</h2>
         <p>We arrange repairs and upkeep, and we oversee the people doing the work.</p>
         <ul>
@@ -80,6 +89,7 @@
       </article>
 
       <article class="service-block" id="compliance" aria-labelledby="compliance-h">
+        <span class="slug" aria-hidden="true">lease/compliance — per jurisdiction</span>
         <h2 id="compliance-h">Lease &amp; compliance support</h2>
         <p>Paperwork done right, in the jurisdiction your property lives in.</p>
         <ul>
@@ -91,6 +101,7 @@
       </article>
 
       <article class="service-block" id="reporting" aria-labelledby="reporting-h">
+        <span class="slug" aria-hidden="true">reporting — monthly, receipts attached</span>
         <h2 id="reporting-h">Owner reporting</h2>
         <p>You should never wonder what's happening at your property.</p>
         <ul>
@@ -105,9 +116,11 @@
 
   <div class="cta-band">
     <div class="container">
-      <h2>Want some or all of this off your plate?</h2>
-      <p>Tell us about your property. We reply within one to two business days.</p>
-      <a class="btn btn-primary" href="contact.html">Contact us</a>
+      <div class="cta-card">
+        <h2>Want some or all of this off your plate?</h2>
+        <p>Tell us about your property. We reply within one to two business days.</p>
+        <a class="btn btn-primary" href="contact.html">Contact us</a>
+      </div>
     </div>
   </div>
 
@@ -130,6 +143,15 @@
     © 2026 Jetson Rocket Property Management</p>
   </div>
 </footer>
+
+<script>
+const menuBtn = document.querySelector('.menu-btn');
+const tabs = document.getElementById('nav-tabs');
+menuBtn.addEventListener('click', () => {
+  const open = tabs.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', String(open));
+});
+</script>
 
 </body>
 </html>

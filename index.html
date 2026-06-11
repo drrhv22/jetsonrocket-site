@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jetson Rocket Property Management — Owner-Operated Rental Management</title>
 <meta name="description" content="Owner-operated property management across the San Francisco Bay Area, Southern California, Central Texas, and Michoacán, México. Nine properties under management, in English and Spanish.">
-<meta name="theme-color" content="#1a1a2e">
+<meta name="theme-color" content="#030712">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Jetson Rocket Property Management — Owner-Operated Rental Management">
 <meta property="og:description" content="Nine properties under management across California, Texas, and Michoacán — most of them our own. Owner-operated, English / Español.">
 <meta property="og:url" content="https://jetsonrocket.org/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='70' font-size='62' font-family='sans-serif' font-weight='700' fill='white' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230B0F19'/%3E%3Crect x='1.5' y='1.5' width='97' height='97' rx='20.5' fill='none' stroke='%2322D3EE' stroke-opacity='.45' stroke-width='3'/%3E%3Ctext x='50' y='68' font-size='56' font-family='monospace' font-weight='700' fill='%2322D3EE' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,12 +23,18 @@
 <header>
   <div class="container">
     <nav class="nav" aria-label="Main">
-      <a class="brand" href="index.html">Jetson Rocket PM</a>
-      <ul>
+      <a class="brand" href="index.html">Jetson Rocket <span class="brand-tag">[PM]</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-tabs" aria-label="Menu">≡</button>
+      <ul class="nav-tabs" id="nav-tabs">
+        <li><a href="index.html" aria-current="page">Overview</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="owners.html">For Owners</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+      <div class="nav-right">
+        <span class="status-badge"><span class="dot" aria-hidden="true"></span> Accepting new properties</span>
+        <a class="btn btn-primary" href="contact.html">Get in touch</a>
+      </div>
     </nav>
   </div>
 </header>
@@ -36,115 +42,217 @@
 <main id="main">
 
   <section class="hero">
-    <div class="container">
-      <p class="kicker">Jetson Rocket Property Management</p>
-      <h1>Owner-operated property management across California, Texas, and <span lang="es">Michoacán</span></h1>
-      <p class="lede">We manage nine properties across two countries — city homes, warehouses, and working farmland, most of them our own — and we're now taking on client rentals alongside them. Every property gets an owner's level of care, in English or Spanish.</p>
-      <div class="actions">
-        <a class="btn btn-primary" href="contact.html">Get in touch</a>
-        <a class="btn btn-ghost" href="services.html">See what we do</a>
+    <div class="container hero-grid">
+      <div>
+        <h1>Nine properties. Two countries. One person accountable.</h1>
+        <p class="lede">Jetson Rocket PM is owner-operated property management across the San Francisco Bay Area, Southern California, Central Texas, and <span lang="es">Michoacán</span> — city homes, warehouses, and working farmland, most of them our own, now alongside client rentals. Every property gets an owner's level of care, in English or Spanish.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="contact.html">Get in touch</a>
+          <a class="btn btn-ghost" href="services.html">See what we do</a>
+        </div>
       </div>
-      <div class="facts">
-        <div class="fact"><strong>9</strong> <span>properties under management</span></div>
-        <div class="fact"><strong>4</strong> <span>regions</span></div>
-        <div class="fact"><strong>2</strong> <span>countries</span></div>
-        <div class="fact"><strong>EN / ES</strong> <span>bilingual service</span></div>
+
+      <div class="term" role="img" aria-label="Portfolio status readout: 9 properties, 4 regions, 2 countries (US and Mexico), asset classes homes, warehouses and farmland, languages English and Spanish, 1 owner-operator, replies within two business days, accepting new properties.">
+        <div class="term-bar" aria-hidden="true">
+          <i></i><i></i><i></i>
+          <span class="term-title">jrpm — portfolio</span>
+        </div>
+        <div class="term-body" aria-hidden="true">
+          <div class="cmd">jrpm portfolio --status</div>
+          <div class="term-row"><span class="k">properties</span><span class="leader"></span><span class="v">9</span></div>
+          <div class="term-row"><span class="k">regions</span><span class="leader"></span><span class="v">4</span></div>
+          <div class="term-row"><span class="k">countries</span><span class="leader"></span><span class="v">2 · US / MX</span></div>
+          <div class="term-row"><span class="k">asset_classes</span><span class="leader"></span><span class="v alt">homes · warehouses · farmland</span></div>
+          <div class="term-row"><span class="k">ownership</span><span class="leader"></span><span class="v alt">most our own + client rentals</span></div>
+          <div class="term-row"><span class="k">languages</span><span class="leader"></span><span class="v">EN / ES</span></div>
+          <div class="term-row"><span class="k">operator</span><span class="leader"></span><span class="v">1 — owner-operated</span></div>
+          <div class="term-row"><span class="k">response_time</span><span class="leader"></span><span class="v">≤ 2 business days</span></div>
+          <div class="term-status"><span class="dot"></span>accepting new properties<span class="caret"></span></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section-alt" aria-labelledby="services-h">
+  <section aria-labelledby="services-h">
     <div class="container">
-      <h2 id="services-h">What we do</h2>
-      <div class="grid grid-4">
-        <div class="card">
-          <h3>Property care &amp; oversight</h3>
-          <p>Tenant communication, regular checks, and the day-to-day needs of your rental.</p>
-          <p><a href="services.html#operations">Details<span class="visually-hidden"> about property care and oversight</span></a></p>
+      <div class="sec-head">
+        <h2 id="services-h">What we do</h2>
+        <span class="data">5 services · all regions</span>
+      </div>
+      <div class="bento">
+
+        <div class="module span-5">
+          <div class="module-head">
+            <h3>Portfolio under management</h3>
+          </div>
+          <p class="kpi-num">9</p>
+          <p class="kpi-label">properties · 4 regions · 2 countries</p>
+          <ul class="chips">
+            <li class="chip accent">city homes</li>
+            <li class="chip accent">warehouses</li>
+            <li class="chip accent">working farmland</li>
+          </ul>
+          <p class="kpi-foot">Most of them our own — we run client rentals on the same systems we trust with our own properties.</p>
         </div>
-        <div class="card">
-          <h3>Maintenance coordination</h3>
-          <p>Repairs and upkeep arranged, scheduled, and checked — urgent issues handled first.</p>
-          <p><a href="services.html#maintenance">Details<span class="visually-hidden"> about maintenance coordination</span></a></p>
+
+        <div class="module span-7">
+          <div class="module-head">
+            <h3>Service modules</h3>
+            <span class="data">5 active</span>
+          </div>
+          <ul class="proc">
+            <li><a href="services.html#operations"><span class="name">property care &amp; oversight</span><span class="leader"></span><span class="state"><span class="dot" style="--d:0s"></span>active</span></a></li>
+            <li><a href="services.html#placement"><span class="name">listing &amp; screening support</span><span class="leader"></span><span class="state"><span class="dot" style="--d:.3s"></span>active</span></a></li>
+            <li><a href="services.html#maintenance"><span class="name">maintenance &amp; vendor management</span><span class="leader"></span><span class="state"><span class="dot" style="--d:.6s"></span>active</span></a></li>
+            <li><a href="services.html#compliance"><span class="name">lease &amp; compliance support</span><span class="leader"></span><span class="state"><span class="dot" style="--d:.9s"></span>active</span></a></li>
+            <li><a href="services.html#reporting"><span class="name">owner reporting</span><span class="leader"></span><span class="state"><span class="dot" style="--d:1.2s"></span>monthly</span></a></li>
+          </ul>
+          <p class="proc-note">Every module links to the details — no departments, no ticket queues, one accountable person.</p>
         </div>
-        <div class="card">
-          <h3>Vendor management</h3>
-          <p>We find, hire, and oversee the contractors who work on your property.</p>
-          <p><a href="services.html#maintenance">Details<span class="visually-hidden"> about vendor management</span></a></p>
+
+        <div class="module span-7">
+          <div class="module-head">
+            <h3>Your monthly statement</h3>
+            <span class="data">owner-report.pdf</span>
+          </div>
+          <ul class="ledger">
+            <li><span>income recorded</span><span class="leader"></span><span class="ok">✓ itemized</span></li>
+            <li><span>expenses paid</span><span class="leader"></span><span class="ok">✓ receipts attached</span></li>
+            <li><span>maintenance completed</span><span class="leader"></span><span class="ok">✓ noted</span></li>
+            <li><span>decisions you need to make</span><span class="leader"></span><span class="ok">✓ flagged</span></li>
+            <li><span>year-end totals</span><span class="leader"></span><span class="ok">✓ tax-ready</span></li>
+          </ul>
+          <p class="proc-note">If something urgent happens mid-month, you hear about it then — not in the report.</p>
         </div>
-        <div class="card">
-          <h3>Owner reporting</h3>
-          <p>A clear monthly statement of income, expenses, and what happened at your property.</p>
-          <p><a href="services.html#reporting">Details<span class="visually-hidden"> about owner reporting</span></a></p>
+
+        <div class="module span-5">
+          <div class="module-head">
+            <h3>A direct line</h3>
+            <span class="data">EN / ES</span>
+          </div>
+          <p>You talk to the person who manages your property — not a call center, not a rotating account rep.</p>
+          <ul class="chips">
+            <li class="chip">replies ≤ 2 business days</li>
+            <li class="chip">English / <span lang="es">Español</span></li>
+          </ul>
+          <p class="kpi-foot"><a href="owners.html">What owners get →</a></p>
         </div>
+
       </div>
     </div>
   </section>
 
   <section aria-labelledby="regions-h">
     <div class="container">
-      <h2 id="regions-h">Where we work</h2>
-      <div class="grid grid-4">
-        <div class="card">
-          <h3>San Francisco Bay Area</h3>
-          <p>Home base. We live here and manage homes in San Francisco and the Peninsula.</p>
+      <div class="sec-head">
+        <h2 id="regions-h">Where we work</h2>
+        <span class="data">4 regions · 2 countries</span>
+      </div>
+
+      <div class="module map-module" style="margin-bottom:1rem">
+        <div class="map-head">
+          <h3>Coverage network</h3>
+          <span class="data">home base: SF Bay Area</span>
         </div>
-        <div class="card">
-          <h3>Southern California</h3>
-          <p>Single-family rentals in the greater Los Angeles and Ventura County areas.</p>
+        <div class="map-wrap">
+          <canvas id="map" aria-hidden="true"></canvas>
+          <div class="map-tip" id="map-tip" aria-hidden="true"></div>
+          <p class="visually-hidden">Network map of our four regions: San Francisco Bay Area (home base), Southern California, Central Texas, and Michoacán, México.</p>
         </div>
-        <div class="card">
-          <h3>Central Texas</h3>
-          <p>Small-town and rural rental property, looked after from afar — carefully.</p>
-        </div>
-        <div class="card">
-          <h3><span lang="es">Michoacán, México</span></h3>
-          <p>A home, warehouses, and working farmland — managed bilingually.</p>
-        </div>
+        <ul class="map-legend">
+          <li class="chip accent">SF Bay Area — home base</li>
+          <li class="chip">Southern California</li>
+          <li class="chip">Central Texas</li>
+          <li class="chip"><span lang="es">Michoacán</span>, México</li>
+        </ul>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Coverage matrix</caption>
+          <thead>
+            <tr>
+              <th scope="col">Region</th>
+              <th scope="col">Asset types</th>
+              <th scope="col">Notes</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">San Francisco Bay Area</th>
+              <td><span class="data">homes</span></td>
+              <td>Home base — we live here and manage homes in San Francisco and the Peninsula.</td>
+              <td><span class="pill"><span class="dot" aria-hidden="true"></span>Active</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Southern California</th>
+              <td><span class="data">single-family rentals</span></td>
+              <td>Greater Los Angeles and Ventura County areas.</td>
+              <td><span class="pill"><span class="dot" aria-hidden="true"></span>Active</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Central Texas</th>
+              <td><span class="data">small-town · rural</span></td>
+              <td>Looked after from afar — carefully.</td>
+              <td><span class="pill"><span class="dot" aria-hidden="true"></span>Active</span></td>
+            </tr>
+            <tr>
+              <th scope="row"><span lang="es">Michoacán, México</span></th>
+              <td><span class="data">home · warehouses · farmland</span></td>
+              <td>Managed bilingually.</td>
+              <td><span class="pill"><span class="dot" aria-hidden="true"></span>Active</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
-  <section class="section-alt" aria-labelledby="how-h">
+  <section aria-labelledby="how-h">
     <div class="container">
-      <h2 id="how-h">How it works</h2>
-      <div class="grid grid-4">
-        <div class="card">
-          <span class="step-num" aria-hidden="true">1</span>
+      <div class="sec-head">
+        <h2 id="how-h">How it works</h2>
+        <span class="data">4 steps · flat monthly fee</span>
+      </div>
+      <ol class="rail" style="list-style:none;padding:0;margin:0">
+        <li class="rail-step">
           <h3>Reach out</h3>
           <p>Tell us about your property through the contact form or by email.</p>
-        </div>
-        <div class="card">
-          <span class="step-num" aria-hidden="true">2</span>
+        </li>
+        <li class="rail-step">
           <h3>Walk-through</h3>
           <p>We visit the property, talk through your goals, and quote a flat monthly fee.</p>
-        </div>
-        <div class="card">
-          <span class="step-num" aria-hidden="true">3</span>
+        </li>
+        <li class="rail-step">
           <h3>Setup</h3>
           <p>Vendors, documents, and the property's day-to-day care get organized in one place.</p>
-        </div>
-        <div class="card">
-          <span class="step-num" aria-hidden="true">4</span>
+        </li>
+        <li class="rail-step">
           <h3>Ongoing care</h3>
           <p>Repairs handled, issues caught early, and a clear report in your inbox every month.</p>
-        </div>
-      </div>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <section aria-labelledby="why-h">
-    <div class="container">
-      <h2 id="why-h">Why work with an owner-operator</h2>
-      <p class="lede">We're not a call center, and you won't be handed off. Jetson Rocket PM is run by the person who owns it — we manage nine properties across two countries, most of them our own, from city homes to farmland, and we apply the same systems and care to client properties. You deal directly with the person responsible for your home, in English or <span lang="es">Español</span>.</p>
+  <section class="strip" aria-labelledby="why-h">
+    <div class="container inner">
+      <div>
+        <h2 id="why-h">Why work with an owner-operator</h2>
+        <p class="lede">We're not a call center, and you won't be handed off. Jetson Rocket PM is run by the person who owns it — we manage nine properties across two countries, most of them our own, from city homes to farmland, and we apply the same systems and care to client properties. You deal directly with the person responsible for your home, in English or <span lang="es">Español</span>.</p>
+      </div>
+      <span class="data">operator = 1<br>no handoffs</span>
     </div>
   </section>
 
   <div class="cta-band">
     <div class="container">
-      <h2>Have a rental that needs looking after?</h2>
-      <p>Tell us about your property. We reply within one to two business days.</p>
-      <a class="btn btn-primary" href="contact.html">Contact us</a>
+      <div class="cta-card">
+        <h2>Have a rental that needs looking after?</h2>
+        <p>Tell us about your property. We reply within one to two business days.</p>
+        <a class="btn btn-primary" href="contact.html">Contact us</a>
+      </div>
     </div>
   </div>
 
@@ -167,6 +275,154 @@
     © 2026 Jetson Rocket Property Management</p>
   </div>
 </footer>
+
+<script>
+// ----- mobile nav -----
+const menuBtn = document.querySelector('.menu-btn');
+const tabs = document.getElementById('nav-tabs');
+menuBtn.addEventListener('click', () => {
+  const open = tabs.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', String(open));
+});
+
+// ----- coverage network canvas -----
+(() => {
+  const canvas = document.getElementById('map');
+  const tip = document.getElementById('map-tip');
+  const ctx = canvas.getContext('2d');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Real regions only; positions are schematic geography (x/y in unit space)
+  const HUB = 0;
+  const nodes = [
+    { x: .12, y: .25, r: 7, label: 'SF Bay Area',     sub: 'home base · homes' },
+    { x: .23, y: .58, r: 5, label: 'Southern California', sub: 'single-family · LA + Ventura' },
+    { x: .70, y: .46, r: 5, label: 'Central Texas',   sub: 'small-town · rural' },
+    { x: .58, y: .84, r: 5, label: 'Michoacán, MX',   sub: 'home · warehouses · farmland' },
+  ];
+  const edges = [[0,1],[0,2],[0,3]];
+  let W = 0, H = 0, dpr = 1, t0 = performance.now(), raf = null, hovered = -1;
+
+  function resize() {
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    draw(performance.now());
+  }
+
+  const px = n => ({ x: n.x * W + 40, y: n.y * H - 10 });
+
+  function curve(a, b) {
+    const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2 - 28;
+    return { mx, my };
+  }
+
+  function draw(now) {
+    ctx.clearRect(0, 0, W, H);
+    // dot grid
+    ctx.fillStyle = 'rgba(148,163,184,.10)';
+    for (let gx = 20; gx < W; gx += 34)
+      for (let gy = 20; gy < H; gy += 34)
+        ctx.fillRect(gx, gy, 1.2, 1.2);
+
+    // edges
+    edges.forEach(([ai, bi], i) => {
+      const a = px(nodes[ai]), b = px(nodes[bi]);
+      const { mx, my } = curve(a, b);
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.quadraticCurveTo(mx, my, b.x, b.y);
+      ctx.strokeStyle = 'rgba(34,211,238,.30)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      if (!reduceMotion) {
+        // traveling pulse along the curve
+        const p = ((now - t0) / 2600 + i * .33) % 1;
+        const u = 1 - p;
+        const cx = u*u*a.x + 2*u*p*mx + p*p*b.x;
+        const cy = u*u*a.y + 2*u*p*my + p*p*b.y;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(34,211,238,.85)';
+        ctx.fill();
+      }
+    });
+
+    // nodes + labels
+    nodes.forEach((n, i) => {
+      const p = px(n);
+      const hub = i === HUB;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, n.r + (hovered === i ? 2 : 0), 0, Math.PI * 2);
+      ctx.fillStyle = hub ? '#22D3EE' : '#A855F7';
+      ctx.shadowColor = hub ? 'rgba(34,211,238,.8)' : 'rgba(168,85,247,.7)';
+      ctx.shadowBlur = hovered === i ? 22 : 12;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, n.r + 6, 0, Math.PI * 2);
+      ctx.strokeStyle = hub ? 'rgba(34,211,238,.3)' : 'rgba(168,85,247,.25)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      ctx.font = '500 12px "Geist Mono", monospace';
+      ctx.fillStyle = hovered === i ? '#F9FAFB' : '#C3CAD7';
+      // flip the label to the node's left when near the right edge so it can't clip
+      if (p.x > W * .62) {
+        ctx.textAlign = 'right';
+        ctx.fillText(n.label, p.x - n.r - 12, p.y + 4);
+        ctx.textAlign = 'left';
+      } else {
+        ctx.fillText(n.label, p.x + n.r + 12, p.y + 4);
+      }
+    });
+
+    if (!reduceMotion) raf = requestAnimationFrame(draw);
+  }
+
+  // hover tooltips (real region facts only)
+  canvas.addEventListener('pointermove', e => {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left, y = e.clientY - rect.top;
+    hovered = nodes.findIndex(n => {
+      const p = px(n);
+      return Math.hypot(p.x - x, p.y - y) < 22;
+    });
+    if (hovered >= 0) {
+      const n = nodes[hovered], p = px(n);
+      tip.innerHTML = '<strong>' + n.label + '</strong>' + n.sub;
+      tip.style.left = p.x + 'px';
+      tip.style.top = p.y + 'px';
+      tip.classList.add('show');
+      canvas.style.cursor = 'pointer';
+    } else {
+      tip.classList.remove('show');
+      canvas.style.cursor = 'default';
+    }
+    if (reduceMotion) draw(performance.now());
+  });
+  canvas.addEventListener('pointerleave', () => {
+    hovered = -1;
+    tip.classList.remove('show');
+    if (reduceMotion) draw(performance.now());
+  });
+
+  // only animate while visible
+  if (!reduceMotion) {
+    new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) { if (!raf) raf = requestAnimationFrame(draw); }
+        else if (raf) { cancelAnimationFrame(raf); raf = null; }
+      });
+    }).observe(canvas);
+  }
+
+  addEventListener('resize', resize);
+  resize();
+})();
+</script>
 
 </body>
 </html>

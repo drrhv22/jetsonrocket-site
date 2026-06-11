@@ -42,8 +42,21 @@ Local preview first: `python3 -m http.server 8000` → http://localhost:8000
 
 | File | Purpose |
 |---|---|
-| `index.html` | Landing: hero, facts, services summary, regions, how it works, CTA |
+| `index.html` | Landing: terminal hero, bento modules, coverage network canvas + matrix, how it works, CTA |
 | `services.html` | Five detailed service sections (anchors: #operations #placement #maintenance #compliance #reporting) |
 | `owners.html` | Owner benefits, reporting, onboarding, FAQ |
 | `contact.html` | Form + mailto fallback |
 | `404.html` | Not-found (uses root-absolute paths on purpose) |
+
+## Design system notes (2026-06 "Property OS" redesign)
+
+- Dark theme tokens at the top of `styles.css`; every text/background pair is AA-verified —
+  the verified ratios are listed in the header comment. New colors must be checked before use.
+- Fonts: Geist (text) + Geist Mono (data/labels) via Google Fonts.
+- Mono type (`.data`, `.term`, `.proc`, `.ledger`) is reserved for REAL values only
+  (counts, regions, statuses, response time). Never style invented numbers as telemetry —
+  the truth gate applies to decorative "data" too.
+- The coverage-network canvas in `index.html` draws the four real regions; node positions,
+  labels, and tooltip facts live in the `nodes` array inside the inline script.
+- Animations (status-dot pulse, caret, canvas pulses) all disable under
+  `prefers-reduced-motion`; keep it that way for new motion.
