@@ -46,7 +46,22 @@ Local preview first: `python3 -m http.server 8000` → http://localhost:8000
 | `services.html` | Five detailed service sections (anchors: #operations #listing #maintenance #compliance #reporting) |
 | `owners.html` | Owner benefits, reporting, onboarding, FAQ |
 | `contact.html` | Form + mailto fallback |
-| `404.html` | Not-found (uses root-absolute paths on purpose) |
+| `404.html` | Not-found, trilingual (uses root-absolute paths on purpose) |
+| `es/*.html` | Spanish versions of the four pages (mirror structure, root-absolute paths) |
+| `zh/*.html` | Traditional Chinese versions (`lang="zh-Hant"`, Bay Area Cantonese register: 三藩市, 物業, 業主) |
+
+## Languages (EN / ES / ZH)
+
+- Three versions of every page: root (EN), `es/`, `zh/`. **A copy change must be made in
+  all three** — the language switcher in the nav and the `hreflang` links in each `<head>`
+  tie them together page-for-page.
+- Terminal/console elements (the `jrpm` readout, slugs, crumbs) stay in English in every
+  language — they're console aesthetic, not content. Translated `aria-label`s carry the facts.
+- The ZH pages state service languages as English/Spanish (truth gate) — the form accepts
+  Chinese, but no Chinese-language service is claimed.
+- Form `<option value>` attributes stay in English in all languages so inquiry emails read
+  consistently; only the visible labels are translated. ES/ZH forms use distinct hidden
+  `subject` values so you can tell which language version an inquiry came from.
 
 ## Design system notes (2026-06 "Property OS" redesign)
 
