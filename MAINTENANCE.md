@@ -48,7 +48,7 @@ Local preview first: `python3 -m http.server 8000` → http://localhost:8000
 | `contact.html` | Form + mailto fallback |
 | `404.html` | Not-found, trilingual (uses root-absolute paths on purpose) |
 | `es/*.html` | Spanish versions of the four pages (mirror structure, root-absolute paths) |
-| `zh/*.html` | Traditional Chinese versions (`lang="zh-Hant"`, Bay Area Cantonese register: 三藩市, 物業, 業主) |
+| `zh/*.html` | Colloquial written Cantonese in Traditional script (`lang="zh-Hant"`, for the Bay Area Toisan/Guangdong community: 嘅/係/喺/我哋, 三藩市, 物業, 睇樓) |
 
 ## Languages (EN / ES / ZH)
 
