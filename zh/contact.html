@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>聯絡 — Jetson Rocket Property Management</title>
-<meta name="description" content="話我哋知你出租物業嘅情況。我哋會喺一至兩個工作天內覆你，用英文或者西班牙文。">
+<meta name="description" content="告訴我們您出租物業的情況。我們會在一至兩個工作天內回覆，以英語或西班牙語。">
 <meta name="theme-color" content="#030712">
 <meta property="og:type" content="website">
 <meta property="og:title" content="聯絡 — Jetson Rocket Property Management">
-<meta property="og:description" content="話我哋知你出租物業嘅情況。我哋會喺一至兩個工作天內覆你，用英文或者西班牙文。">
+<meta property="og:description" content="告訴我們您出租物業的情況。我們會在一至兩個工作天內回覆，以英語或西班牙語。">
 <meta property="og:url" content="https://jetsonrocket.org/zh/contact.html">
 <link rel="alternate" hreflang="en" href="https://jetsonrocket.org/contact.html">
 <link rel="alternate" hreflang="es" href="https://jetsonrocket.org/es/contact.html">
@@ -22,7 +22,7 @@
 </head>
 <body>
 
-<a class="skip-link" href="#main">跳去主要內容</a>
+<a class="skip-link" href="#main">跳至主要內容</a>
 
 <header>
   <div class="container">
@@ -41,7 +41,7 @@
           <a href="/es/contact.html" hreflang="es" lang="es">ES</a>
           <a href="/zh/contact.html" hreflang="zh-Hant" aria-current="true">中文</a>
         </nav>
-        <span class="status-badge"><span class="dot" aria-hidden="true"></span> 接緊新物業</span>
+        <span class="status-badge"><span class="dot" aria-hidden="true"></span> 接受新物業</span>
         <a class="btn btn-primary" href="/zh/contact.html">聯絡我們</a>
       </div>
     </nav>
@@ -53,8 +53,8 @@
   <section class="hero-inner">
     <div class="container">
       <p class="crumb">contact</p>
-      <h1>話我哋知你物業嘅情況</h1>
-      <p class="lede">寫幾句就得——物業喺邊度、需要啲乜。表格用中文填都得。我哋會喺一至兩個工作天內覆你，用英文或者西班牙文。</p>
+      <h1>告訴我們您物業的情況</h1>
+      <p class="lede">寫幾句就可以——物業在哪裡、需要什麼。表格可以用中文填寫。我們會在一至兩個工作天內回覆，以英語或西班牙語。</p>
     </div>
   </section>
 
@@ -62,7 +62,7 @@
     <div class="container">
 
       <div class="form-panel" style="max-width:680px">
-        <p class="data" style="color:var(--cyan-ink);margin:0 0 1.4rem">new-inquiry — 兩個工作天內覆你</p>
+        <p class="data" style="color:var(--cyan-ink);margin:0 0 1.4rem">new-inquiry — 兩個工作天內回覆</p>
         <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="6e8c66df-10ab-4e61-8637-2019e246ab10">
           <input type="hidden" name="subject" value="New inquiry from jetsonrocket.org (ZH)">
@@ -79,32 +79,32 @@
           </div>
 
           <div class="field">
-            <label for="phone">電話 <span class="optional">（唔填都得）</span></label>
+            <label for="phone">電話 <span class="optional">（選填）</span></label>
             <input id="phone" name="phone" type="tel" autocomplete="tel">
           </div>
 
           <div class="field">
-            <label for="location">物業喺邊區 <span class="optional">（唔填都得）</span></label>
+            <label for="location">物業所在地區 <span class="optional">（選填）</span></label>
             <select id="location" name="property_region">
-              <option value="">揀一個地區</option>
+              <option value="">請選擇地區</option>
               <option value="SF Bay Area">三藩市灣區</option>
               <option value="Southern California">南加州</option>
               <option value="Central Texas">德州中部</option>
               <option value="Michoacan, Mexico">米卻肯州，墨西哥</option>
-              <option value="Other">其他地方</option>
+              <option value="Other">其他地區</option>
             </select>
           </div>
 
           <div class="field">
-            <label for="message">留言</label>
+            <label for="message">訊息</label>
             <textarea id="message" name="message" required></textarea>
           </div>
 
-          <button class="btn btn-primary" type="submit">送出留言</button>
+          <button class="btn btn-primary" type="submit">發送訊息</button>
 
           <div class="form-status" role="status" aria-live="polite"></div>
 
-          <p class="form-note">想直接用電郵？寄去 <a href="mailto:admin@jetsonrocket.com">admin@jetsonrocket.com</a> 就得。</p>
+          <p class="form-note">想直接用電郵？請寄至 <a href="mailto:admin@jetsonrocket.com">admin@jetsonrocket.com</a>。</p>
         </form>
       </div>
 
@@ -126,7 +126,7 @@
         <li><a href="/zh/contact.html">聯絡</a></li>
       </ul>
     </div>
-    <p class="legal"><a href="mailto:admin@jetsonrocket.com">admin@jetsonrocket.com</a> · 英文 / 西班牙文<br>
+    <p class="legal"><a href="mailto:admin@jetsonrocket.com">admin@jetsonrocket.com</a> · 英語 / 西班牙語<br>
     © 2026 Jetson Rocket Property Management</p>
   </div>
 </footer>
@@ -149,7 +149,7 @@ form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   submitBtn.disabled = true;
-  submitBtn.textContent = '發送緊…';
+  submitBtn.textContent = '發送中…';
   status.className = 'form-status';
   status.textContent = '';
 
@@ -164,13 +164,13 @@ form.addEventListener('submit', async (e) => {
     if (!res.ok || !data || data.success !== true) throw new Error('submission rejected');
     form.reset();
     status.className = 'form-status ok';
-    status.textContent = '收到你嘅留言喇。我哋會喺一至兩個工作天內覆你。';
+    status.textContent = '訊息已發送。我們會在一至兩個工作天內回覆。';
   } catch (err) {
     status.className = 'form-status err';
-    status.textContent = '發送唔到，你嘅留言未送出。麻煩你改用電郵：admin@jetsonrocket.com。';
+    status.textContent = '發送失敗，您的訊息未能送出。請改為電郵至 admin@jetsonrocket.com。';
   } finally {
     submitBtn.disabled = false;
-    submitBtn.textContent = '送出留言';
+    submitBtn.textContent = '發送訊息';
   }
 });
 </script>
