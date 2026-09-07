@@ -11,6 +11,8 @@
   <meta property="og:url" content="https://jetsonrocket.org">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="jsdos/js-dos.css">
+  <script src="jsdos/js-dos.js"></script>
 </head>
 <body data-stream-host="https://stream.jetsonrocket.org">
 
@@ -22,6 +24,8 @@
   <header class="chassis-header">
     <div class="nav-links">
       <a href="#schedule">SCHEDULE</a>
+      <a href="#arcade">ARCADE</a>
+      <a href="#vault">BOOK VAULT</a>
       <a href="#dispatches">DISPATCHES</a>
       <a href="#about">ABOUT</a>
     </div>
@@ -181,6 +185,46 @@
     </div>
     <div class="dispatches-feed" id="dispatches-feed">
       <!-- Populated dynamically via player.js -->
+    </div>
+  </section>
+
+  <!-- Arcade Section: Crime Fighter (1993) -->
+  <section id="arcade" class="arcade-section">
+    <div class="arcade-header">
+      <div>
+        <h2 class="block-title">🕹️ MS-DOS ARCADE · CRIME FIGHTER (1993)</h2>
+        <p class="section-sub">Full MS-DOS game running in DOSBox WebAssembly. No accounts, zero tracking. Up to 4 players hot-seat or solo crime investigation.</p>
+      </div>
+      <button id="launch-crime-btn" class="action-btn">▶ INSERT COIN &amp; BOOT CRIME FIGHTER</button>
+    </div>
+    <div class="arcade-cabinet">
+      <div id="dos-mount">
+        <div style="display: flex; height: 100%; align-items: center; justify-content: center; flex-direction: column; gap: 10px; color: var(--text-muted); font-size: 0.8rem;">
+          <span style="font-size: 2rem;">📺</span>
+          <span>MS-DOS CARTRIDGE READY IN TRAY</span>
+          <span style="color: var(--amber-glow); font-size: 0.72rem;">Click 'INSERT COIN &amp; BOOT' to initialize DOSBox WebAssembly</span>
+        </div>
+      </div>
+      <div class="arcade-bar">
+        <span>CH 5 · CRIME FIGHTER · MS-DOS 1993</span>
+        <span>© 1993–2002 PETER STEFFEN · FREEWARE</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Book Vault Section: Survivor Library -->
+  <section id="vault" class="vault-section">
+    <div class="vault-header">
+      <div>
+        <h2 class="block-title">📚 THE SURVIVOR LIBRARY VAULT</h2>
+        <p class="section-sub">Thousands of 19th &amp; early 20th-century historical manuals, forgotten trades, astronomy, and technology books preserved from human history. 100% Public Domain.</p>
+      </div>
+    </div>
+    <div class="vault-pills" id="vault-pills">
+      <!-- Category filter pills generated dynamically -->
+    </div>
+    <div class="vault-books-grid" id="vault-books-grid">
+      <!-- Book cards populated dynamically from vault-catalog.json -->
     </div>
   </section>
 
@@ -572,6 +616,97 @@ document.addEventListener('DOMContentLoaded', () => {
     modalBackdrop.classList.add('hidden');
     alert('Transmission received. Your dispatch has been archived in the station vault.');
   });
+
+  // ── Crime Fighter (MS-DOS Arcade Launcher) ──
+  const launchCrimeBtn = document.getElementById('launch-crime-btn');
+  const dosMount = document.getElementById('dos-mount');
+  let dosInstance = null;
+
+  launchCrimeBtn?.addEventListener('click', () => {
+    if (dosInstance) return;
+    if (typeof window.Dos !== 'function') {
+      alert('DOSBox WebAssembly emulator is initializing. Please try in a few seconds.');
+      return;
+    }
+    launchCrimeBtn.disabled = true;
+    launchCrimeBtn.textContent = 'BOOTING DOSBOX (1993)...';
+    dosMount.innerHTML = '';
+
+    try {
+      dosInstance = window.Dos(dosMount, {
+        url: 'arcade/crime-fighter.jsdos',
+        pathPrefix: 'jsdos/emulators/',
+        theme: 'dark',
+        noCloud: true,
+        noNetworking: true,
+        kiosk: true,
+        autoStart: true,
+        backendLocked: true,
+        workerThread: true,
+        imageRendering: 'pixelated',
+        renderAspect: '4/3',
+      });
+      launchCrimeBtn.textContent = 'CRIME FIGHTER ACTIVE';
+    } catch (e) {
+      console.error('Failed to load Crime Fighter:', e);
+      dosMount.innerHTML = '<p style="color:red; text-align:center; padding: 20px;">FAILED TO LOAD CARTRIDGE</p>';
+      launchCrimeBtn.disabled = false;
+      launchCrimeBtn.textContent = 'RETRY BOOT';
+    }
+  });
+
+  // ── Book Vault (Survivor Library Catalog & Streamer) ──
+  const vaultPills = document.getElementById('vault-pills');
+  const vaultBooksGrid = document.getElementById('vault-books-grid');
+  let vaultData = {};
+
+  fetch('vault-catalog.json')
+    .then(r => r.json())
+    .then(data => {
+      vaultData = data;
+      renderVaultPills();
+      const firstCat = Object.keys(data)[0];
+      if (firstCat) renderVaultCategory(firstCat);
+    })
+    .catch(e => {
+      console.warn('Vault catalog in flight:', e);
+    });
+
+  function renderVaultPills() {
+    if (!vaultPills) return;
+    vaultPills.innerHTML = '';
+    Object.keys(vaultData).forEach((key, idx) => {
+      const cat = vaultData[key];
+      const pill = document.createElement('button');
+      pill.className = `vault-pill ${idx === 0 ? 'active' : ''}`;
+      pill.textContent = `${cat.name} (${cat.count})`;
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.vault-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        renderVaultCategory(key);
+      });
+      vaultPills.appendChild(pill);
+    });
+  }
+
+  function renderVaultCategory(catKey) {
+    if (!vaultBooksGrid || !vaultData[catKey]) return;
+    vaultBooksGrid.innerHTML = '';
+    const cat = vaultData[catKey];
+    cat.books.forEach(b => {
+      const card = document.createElement('div');
+      card.className = 'book-card';
+      const readUrl = `https://stream.jetsonrocket.online/vault/book/${encodeURIComponent(b.category)}/${encodeURIComponent(b.filename)}`;
+      card.innerHTML = `
+        <div>
+          <div class="book-category-tag">${escapeHTML(cat.name)}</div>
+          <div class="book-title">${escapeHTML(b.title)}</div>
+        </div>
+        <a href="${readUrl}" target="_blank" rel="noopener" class="book-read-btn">READ / DOWNLOAD PDF ↗</a>
+      `;
+      vaultBooksGrid.appendChild(card);
+    });
+  }
 });
 </script>
 </body>

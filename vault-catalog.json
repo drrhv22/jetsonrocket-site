@@ -1,0 +1,926 @@
+{
+  "astronomy": {
+    "name": "Astronomy",
+    "count": 195,
+    "books": [
+      {
+        "title": "1001 Questions Answered About Astronomy 1975",
+        "filename": "1001_questions_answered_about_astronomy_1975.pdf",
+        "category": "astronomy"
+      },
+      {
+        "title": "A Centurys Progress In Astronomy 1906",
+        "filename": "a_centurys_progress_in_astronomy_1906.pdf",
+        "category": "astronomy"
+      },
+      {
+        "title": "A Compendium Of Astronomy 1830",
+        "filename": "a_compendium_of_astronomy_1830.pdf",
+        "category": "astronomy"
+      },
+      {
+        "title": "A Complete System Of Astronomy Vince 1814",
+        "filename": "a_complete_system_of_astronomy-vince_1814.pdf",
+        "category": "astronomy"
+      },
+      {
+        "title": "A Concise History Of Astronomy 1950",
+        "filename": "a_concise_history_of_astronomy_1950.pdf",
+        "category": "astronomy"
+      },
+      {
+        "title": "A Few Chapters In Astronomy 1894",
+        "filename": "a_few_chapters_in_astronomy_1894.pdf",
+        "category": "astronomy"
+      },
+      {
+        "title": "A Handbook Of Descriptive And Practical Astronomy Vol 1 1889",
+        "filename": "a_handbook_of_descriptive_and_practical_astronomy_vol_1_1889.pdf",
+        "category": "astronomy"
+      },
+      {
+        "title": "A Handbook Of Descriptive And Practical Astronomy Vol 2 1889",
+        "filename": "a_handbook_of_descriptive_and_practical_astronomy_vol_2_1889.pdf",
+        "category": "astronomy"
+      },
+      {
+        "title": "A Handbook Of Descriptive And Practical Astronomy Vol 3 1889",
+        "filename": "a_handbook_of_descriptive_and_practical_astronomy_vol_3_1889.pdf",
+        "category": "astronomy"
+      },
+      {
+        "title": "A History Of Astronomy 1907",
+        "filename": "a_history_of_astronomy_1907.pdf",
+        "category": "astronomy"
+      },
+      {
+        "title": "A History Of Astronomy From Thales To Kepler 1953",
+        "filename": "a_history_of_astronomy_from_thales_to_kepler_1953.pdf",
+        "category": "astronomy"
+      },
+      {
+        "title": "A History Of Nautical Astronomy 1968",
+        "filename": "a_history_of_nautical_astronomy_1968.pdf",
+        "category": "astronomy"
+      }
+    ]
+  },
+  "airships": {
+    "name": "Airships",
+    "count": 26,
+    "books": [
+      {
+        "title": "A Study Of Static Stability Of Airships 1924",
+        "filename": "a_study_of_static_stability_of_airships_1924.pdf",
+        "category": "airships"
+      },
+      {
+        "title": "Aerial Navigation Construction Of Aerostats",
+        "filename": "aerial_navigation-construction_of_aerostats.pdf",
+        "category": "airships"
+      },
+      {
+        "title": "Aeroplanes And Dirigibles Of War 1915",
+        "filename": "aeroplanes_and_dirigibles_of_war_1915.pdf",
+        "category": "airships"
+      },
+      {
+        "title": "Airplanes Airships Aircraft Engines 1921",
+        "filename": "airplanes_airships_aircraft_engines_1921.pdf",
+        "category": "airships"
+      },
+      {
+        "title": "Airships In Peace And War 1910",
+        "filename": "airships_in_peace_and_war_1910.pdf",
+        "category": "airships"
+      },
+      {
+        "title": "Airships Past And Present 1908",
+        "filename": "airships_past_and_present_1908.pdf",
+        "category": "airships"
+      },
+      {
+        "title": "Ballooning A Concise Sketch Of Its History And Principles 1885",
+        "filename": "ballooning-a_concise_sketch_of_its_history_and_principles_1885.pdf",
+        "category": "airships"
+      },
+      {
+        "title": "Ballooning As A Sport 1907",
+        "filename": "ballooning_as_a_sport_1907.pdf",
+        "category": "airships"
+      },
+      {
+        "title": "Balloons Airships And Flying Machines 1905",
+        "filename": "balloons_airships_and_flying_machines_1905.pdf",
+        "category": "airships"
+      },
+      {
+        "title": "Commercial Aviation In Germany Past And Future 1921",
+        "filename": "commercial_aviation_in_germany-past_and_future_1921.pdf",
+        "category": "airships"
+      },
+      {
+        "title": "Dorcys Airship Manual An International Register Of Airships 1917",
+        "filename": "dorcys_airship_manual-an_international_register_of_airships_1917.pdf",
+        "category": "airships"
+      },
+      {
+        "title": "Germanys Fighting Machine Her Air Ships 1914",
+        "filename": "germanys_fighting_machine-her_air-ships_1914.pdf",
+        "category": "airships"
+      }
+    ]
+  },
+  "aeroplanes": {
+    "name": "Aeroplanes",
+    "count": 16,
+    "books": [
+      {
+        "title": "Aeroplane Construction A Handbook On The Various Methods 1919",
+        "filename": "aeroplane_construction-a_handbook_on_the_various_methods_1919.pdf",
+        "category": "aeroplanes"
+      },
+      {
+        "title": "Aeroplanes 1915",
+        "filename": "aeroplanes_1915.pdf",
+        "category": "aeroplanes"
+      },
+      {
+        "title": "Aeroplanes In Gusts Soaring Flight And The Stability Of Aeroplanes 1913",
+        "filename": "aeroplanes_in_gusts-soaring_flight_and_the_stability_of_aeroplanes_1913.pdf",
+        "category": "aeroplanes"
+      },
+      {
+        "title": "Flying Machines Past Present And Future 1914",
+        "filename": "flying_machines_past_present_and_future_1914.pdf",
+        "category": "aeroplanes"
+      },
+      {
+        "title": "Harpers Aircraft Book 1913",
+        "filename": "harpers_aircraft_book_1913.pdf",
+        "category": "aeroplanes"
+      },
+      {
+        "title": "Military Aeroplanes An Explanatory Consideration Of Their Characteristics 1916",
+        "filename": "military_aeroplanes-an_explanatory_consideration_of_their_characteristics_1916.pdf",
+        "category": "aeroplanes"
+      },
+      {
+        "title": "Model Aeroplanes And Their Motors 1916",
+        "filename": "model_aeroplanes_and_their_motors_1916.pdf",
+        "category": "aeroplanes"
+      },
+      {
+        "title": "Natural Stability And The Parachute Principle In Aeroplanes 1911",
+        "filename": "natural_stability_and_the_parachute_principle_in_aeroplanes_1911.pdf",
+        "category": "aeroplanes"
+      },
+      {
+        "title": "Practical Aeroplane Construction A Treatise On Modern Workshop Practice 1920",
+        "filename": "practical_aeroplane_construction-a_treatise_on_modern_workshop_practice_1920.pdf",
+        "category": "aeroplanes"
+      },
+      {
+        "title": "Stability In Aviation An Introduction To Dynamical Stability 1911",
+        "filename": "stability_in_aviation-an_introduction_to_dynamical_stability_1911.pdf",
+        "category": "aeroplanes"
+      },
+      {
+        "title": "The Aero Manual A Manual Of Mechanically Propelled Human Flight 1909",
+        "filename": "the_aero_manual-a_manual_of_mechanically_propelled_human_flight_1909.pdf",
+        "category": "aeroplanes"
+      },
+      {
+        "title": "The Art Of Aviation A Handbook Upon Aeroplanes And Their Engines 1910",
+        "filename": "the_art_of_aviation-a_handbook_upon_aeroplanes_and_their_engines_1910.pdf",
+        "category": "aeroplanes"
+      }
+    ]
+  },
+  "architecture": {
+    "name": "Architecture",
+    "count": 251,
+    "books": [
+      {
+        "title": "A Treatise On The Decorative Part Of Civil Architecture 1862",
+        "filename": "a_treatise_on_the_decorative_part_of_civil_architecture_1862.pdf",
+        "category": "architecture"
+      },
+      {
+        "title": "Academy Architecture And Architectural Review Vol 11 14 1897",
+        "filename": "academy_architecture_and_architectural_review_vol_11-14_1897.pdf",
+        "category": "architecture"
+      },
+      {
+        "title": "Academy Architecture And Architectural Review Vol 15 18 1899",
+        "filename": "academy_architecture_and_architectural_review_vol_15-18_1899.pdf",
+        "category": "architecture"
+      },
+      {
+        "title": "Academy Architecture And Architectural Review Vol 19 1901",
+        "filename": "academy_architecture_and_architectural_review_vol_19_1901.pdf",
+        "category": "architecture"
+      },
+      {
+        "title": "Academy Architecture And Architectural Review Vol 20 1901",
+        "filename": "academy_architecture_and_architectural_review_vol_20_1901.pdf",
+        "category": "architecture"
+      },
+      {
+        "title": "Academy Architecture And Architectural Review Vol 21 1902",
+        "filename": "academy_architecture_and_architectural_review_vol_21_1902.pdf",
+        "category": "architecture"
+      },
+      {
+        "title": "Academy Architecture And Architectural Review Vol 22 1902",
+        "filename": "academy_architecture_and_architectural_review_vol_22_1902.pdf",
+        "category": "architecture"
+      },
+      {
+        "title": "Academy Architecture And Architectural Review Vol 27 28 1905",
+        "filename": "academy_architecture_and_architectural_review_vol_27-28_1905.pdf",
+        "category": "architecture"
+      },
+      {
+        "title": "Academy Architecture And Architectural Review Vol 29 1906",
+        "filename": "academy_architecture_and_architectural_review_vol_29_1906.pdf",
+        "category": "architecture"
+      },
+      {
+        "title": "Academy Architecture And Architectural Review Vol 30 1906",
+        "filename": "academy_architecture_and_architectural_review_vol_30_1906.pdf",
+        "category": "architecture"
+      },
+      {
+        "title": "Academy Architecture And Architectural Review Vol 31 1907",
+        "filename": "academy_architecture_and_architectural_review_vol_31_1907.pdf",
+        "category": "architecture"
+      },
+      {
+        "title": "Academy Architecture And Architectural Review Vol 32 1907",
+        "filename": "academy_architecture_and_architectural_review_vol_32_1907.pdf",
+        "category": "architecture"
+      }
+    ]
+  },
+  "chemistry": {
+    "name": "Chemistry",
+    "count": 68,
+    "books": [
+      {
+        "title": "A Handbook Of Industrial Organic Chemistry 1900",
+        "filename": "a_handbook_of_industrial_organic_chemistry_1900.pdf",
+        "category": "chemistry"
+      },
+      {
+        "title": "A Laboratory Manual Of Synthetic Agricultural Chemistry 1919",
+        "filename": "a_laboratory_manual_of_synthetic_agricultural_chemistry_1919.pdf",
+        "category": "chemistry"
+      },
+      {
+        "title": "A Laboratory Outline Of General Chemistry 1899",
+        "filename": "a_laboratory_outline_of_general_chemistry_1899.pdf",
+        "category": "chemistry"
+      },
+      {
+        "title": "A Manual Of The Chemistry Of The Carbon Compounds 1874",
+        "filename": "a_manual_of_the_chemistry_of_the_carbon_compounds_1874.pdf",
+        "category": "chemistry"
+      },
+      {
+        "title": "A Text Book Of Chemistry 1898",
+        "filename": "a_text_book_of_chemistry_1898.pdf",
+        "category": "chemistry"
+      },
+      {
+        "title": "A Text Book Of Chemistry For Students Of Veterinary College 1907",
+        "filename": "a_text_book_of_chemistry_for_students_of_veterinary_college_1907.pdf",
+        "category": "chemistry"
+      },
+      {
+        "title": "A Text Book Of Electro Chemistry 1907",
+        "filename": "a_text_book_of_electro_chemistry_1907.pdf",
+        "category": "chemistry"
+      },
+      {
+        "title": "A Textbook Of Chemistry For Nurses 1923",
+        "filename": "a_textbook_of_chemistry_for_nurses_1923.pdf",
+        "category": "chemistry"
+      },
+      {
+        "title": "A Treatise On Chemistry Vol 1 1905",
+        "filename": "a_treatise_on_chemistry_vol_1_1905.pdf",
+        "category": "chemistry"
+      },
+      {
+        "title": "A Treatise On Chemistry Vol 2 1907",
+        "filename": "a_treatise_on_chemistry_vol_2_1907.pdf",
+        "category": "chemistry"
+      },
+      {
+        "title": "A Treatise On Chemistry Vol 3 Part 1 1890",
+        "filename": "a_treatise_on_chemistry_vol_3_part_1_1890.pdf",
+        "category": "chemistry"
+      },
+      {
+        "title": "A Treatise On Chemistry Vol 3 Part 2 1884",
+        "filename": "a_treatise_on_chemistry_vol_3_part_2_1884.pdf",
+        "category": "chemistry"
+      }
+    ]
+  },
+  "clockmaking": {
+    "name": "Clockmaking",
+    "count": 72,
+    "books": [
+      {
+        "title": "A Catalogue Of Books Manuscripts Specimens Of Clocks Watches And Watchwork 1875",
+        "filename": "a_catalogue_of_books_manuscripts_specimens_of_clocks_watches_and_watchwork_1875.pdf",
+        "category": "clockmaking"
+      },
+      {
+        "title": "A Description Of A Clepsydra Or Water Clock 1753",
+        "filename": "a_description_of_a_clepsydra_or_water-clock_1753.pdf",
+        "category": "clockmaking"
+      },
+      {
+        "title": "A Portion Of The Papers Relating To The Great Clock 1848",
+        "filename": "a_portion_of_the_papers_relating_to_the_great_clock_1848.pdf",
+        "category": "clockmaking"
+      },
+      {
+        "title": "A Practical Course In Horology 1944",
+        "filename": "a_practical_course_in_horology_1944.pdf",
+        "category": "clockmaking"
+      },
+      {
+        "title": "A Practical Treatise On The Balance Spring 1876",
+        "filename": "a_practical_treatise_on_the_balance_spring_1876.pdf",
+        "category": "clockmaking"
+      },
+      {
+        "title": "A Rudimentary Treatise On Clock And Watch Making 1850",
+        "filename": "a_rudimentary_treatise_on_clock_and_watch_making_1850.pdf",
+        "category": "clockmaking"
+      },
+      {
+        "title": "A Rudimentary Treatise On Clocks Watches And Bells For Public Purposes 1903",
+        "filename": "a_rudimentary_treatise_on_clocks_watches_and_bells_for_public_purposes_1903.pdf",
+        "category": "clockmaking"
+      },
+      {
+        "title": "A Treatise On Modern Horology In Theory And Practice 1887",
+        "filename": "a_treatise_on_modern_horology_in_theory_and_practice_1887.pdf",
+        "category": "clockmaking"
+      },
+      {
+        "title": "A Treatise On The Teeth Of Wheels 1868",
+        "filename": "a_treatise_on_the_teeth_of_wheels_1868.pdf",
+        "category": "clockmaking"
+      },
+      {
+        "title": "A Treatise On Watch Work Past And Present 1873",
+        "filename": "a_treatise_on_watch-work_past_and_present_1873.pdf",
+        "category": "clockmaking"
+      },
+      {
+        "title": "Abbotts American Watchmaker And Jeweler 1898",
+        "filename": "abbotts_american_watchmaker_and_jeweler_1898.pdf",
+        "category": "clockmaking"
+      },
+      {
+        "title": "Accutron Service Manual Series 214",
+        "filename": "accutron_service_manual_series_214.pdf",
+        "category": "clockmaking"
+      }
+    ]
+  },
+  "coal_and_mining": {
+    "name": "Coal And Mining",
+    "count": 166,
+    "books": [
+      {
+        "title": "A Descriptive Treatise On Mining Machinery 1877",
+        "filename": "a_descriptive_treatise_on_mining_machinery_1877.pdf",
+        "category": "coal_and_mining"
+      },
+      {
+        "title": "A Practical Treatise On Mining Surveying 1863",
+        "filename": "a_practical_treatise_on_mining_surveying_1863.pdf",
+        "category": "coal_and_mining"
+      },
+      {
+        "title": "A Rudimentary Treatise On Coal And Coal Mining 1900",
+        "filename": "a_rudimentary_treatise_on_coal_and_coal_mining_1900.pdf",
+        "category": "coal_and_mining"
+      },
+      {
+        "title": "A Study Of Ore Deposits For The Practical Miner 1908",
+        "filename": "a_study_of_ore_deposits_for_the_practical_miner_1908.pdf",
+        "category": "coal_and_mining"
+      },
+      {
+        "title": "A Text Book Of Coal Mining 1904",
+        "filename": "a_text-book_of_coal-mining_1904.pdf",
+        "category": "coal_and_mining"
+      },
+      {
+        "title": "A Text Book Of Ore And Stone Mining 1894",
+        "filename": "a_text-book_of_ore_and_stone_mining_1894.pdf",
+        "category": "coal_and_mining"
+      },
+      {
+        "title": "A Textbook Of Ore Dressing 1909",
+        "filename": "a_textbook_of_ore_dressing_1909.pdf",
+        "category": "coal_and_mining"
+      },
+      {
+        "title": "A Textbook On Mining Engineering Vol 1 1900",
+        "filename": "a_textbook_on_mining_engineering_vol_1_1900.pdf",
+        "category": "coal_and_mining"
+      },
+      {
+        "title": "A Textbook On Mining Engineering Vol 2 1900",
+        "filename": "a_textbook_on_mining_engineering_vol_2_1900.pdf",
+        "category": "coal_and_mining"
+      },
+      {
+        "title": "A Textbook On Mining Engineering Vol 3 1900",
+        "filename": "a_textbook_on_mining_engineering_vol_3_1900.pdf",
+        "category": "coal_and_mining"
+      },
+      {
+        "title": "A Textbook On Mining Engineering Vol 4 1900",
+        "filename": "a_textbook_on_mining_engineering_vol_4_1900.pdf",
+        "category": "coal_and_mining"
+      },
+      {
+        "title": "A Textbook On Mining Engineering Vol 5 1900",
+        "filename": "a_textbook_on_mining_engineering_vol_5_1900.pdf",
+        "category": "coal_and_mining"
+      }
+    ]
+  },
+  "brewing_and_distilling": {
+    "name": "Brewing And Distilling",
+    "count": 32,
+    "books": [
+      {
+        "title": "A History And Description Of Modern Wines 1860",
+        "filename": "a_history_and_description_of_modern_wines-1860.pdf",
+        "category": "brewing_and_distilling"
+      },
+      {
+        "title": "A Practical Handbook On The Distillation Of Alcohol From Farm Products 1918",
+        "filename": "a_practical_handbook_on_the_distillation_of_alcohol_from_farm_products_1918.pdf",
+        "category": "brewing_and_distilling"
+      },
+      {
+        "title": "A Practical Treatise On Breeding Domestic Poultry With Instructions For The Private Brewery On Cider Perry And British Wine Making 1842",
+        "filename": "a_practical_treatise_on_breeding_domestic_poultry_with_instructions_for_the_private_brewery_on_cider_perry_and_british_wine_making-1842.pdf",
+        "category": "brewing_and_distilling"
+      },
+      {
+        "title": "A Practical Treatise On Brewing And Storing Beer 1835",
+        "filename": "a_practical_treatise_on_brewing_and_storing_beer-1835.pdf",
+        "category": "brewing_and_distilling"
+      },
+      {
+        "title": "A Textbook On The Science Of Brewing 1891",
+        "filename": "a_textbook_on_the_science_of_brewing-1891.pdf",
+        "category": "brewing_and_distilling"
+      },
+      {
+        "title": "A Theoretical And Practical Treatise On Malting And Brewing 1835",
+        "filename": "a_theoretical_and_practical_treatise_on_malting_and_brewing-1835.pdf",
+        "category": "brewing_and_distilling"
+      },
+      {
+        "title": "Alcohol Its Production And Properties 1919",
+        "filename": "alcohol-its_production_and_properties-1919.pdf",
+        "category": "brewing_and_distilling"
+      },
+      {
+        "title": "Alcohol Medical Use 1907",
+        "filename": "alcohol-medical_use_1907.pdf",
+        "category": "brewing_and_distilling"
+      },
+      {
+        "title": "Brewers Accounts 1899",
+        "filename": "brewers_accounts-1899.pdf",
+        "category": "brewing_and_distilling"
+      },
+      {
+        "title": "Brewers And Bottlers Accounts 1906",
+        "filename": "brewers_and_bottlers_accounts-1906.pdf",
+        "category": "brewing_and_distilling"
+      },
+      {
+        "title": "Chemical Studies Of American Barleys And Malts 1909",
+        "filename": "chemical_studies_of_american_barleys_and_malts-1909.pdf",
+        "category": "brewing_and_distilling"
+      },
+      {
+        "title": "Danish Beer And Continental Beer Gardens 1914",
+        "filename": "danish_beer_and_continental_beer_gardens-1914.pdf",
+        "category": "brewing_and_distilling"
+      }
+    ]
+  },
+  "baking": {
+    "name": "Baking",
+    "count": 44,
+    "books": [
+      {
+        "title": "A Treatise On Bread And Bread Making 1837",
+        "filename": "a_treatise_on_bread_and_bread-making_1837.pdf",
+        "category": "baking"
+      },
+      {
+        "title": "A Treatise On Flour Yeast Fermentation And Baking 1914",
+        "filename": "a_treatise_on_flour_yeast_fermentation_and_baking_1914.pdf",
+        "category": "baking"
+      },
+      {
+        "title": "Bakers Bread 1906",
+        "filename": "bakers_bread_1906.pdf",
+        "category": "baking"
+      },
+      {
+        "title": "Baking In The Home 1922",
+        "filename": "baking_in_the_home_1922.pdf",
+        "category": "baking"
+      },
+      {
+        "title": "Baking Powder A Healthful Convenient Leavening Agent 1915",
+        "filename": "baking_powder-a_healthful_convenient_leavening_agent_1915.pdf",
+        "category": "baking"
+      },
+      {
+        "title": "Baking Powders 1889",
+        "filename": "baking_powders_1889.pdf",
+        "category": "baking"
+      },
+      {
+        "title": "Baking Powders 1912",
+        "filename": "baking_powders_1912.pdf",
+        "category": "baking"
+      },
+      {
+        "title": "Baking Powders A Treatise Of The Character 1899",
+        "filename": "baking_powders-a_treatise_of_the_character_1899.pdf",
+        "category": "baking"
+      },
+      {
+        "title": "Best Recipes For Baking 1907",
+        "filename": "best_recipes_for_baking_1907.pdf",
+        "category": "baking"
+      },
+      {
+        "title": "Book Of American Baking A Practical Guide Covering The Baking Industry 1910",
+        "filename": "book_of_american_baking-a_practical_guide_covering_the_baking_industry_1910.pdf",
+        "category": "baking"
+      },
+      {
+        "title": "Bread And Bread Making 1889",
+        "filename": "bread_and_bread-making_1889.pdf",
+        "category": "baking"
+      },
+      {
+        "title": "Bread And Cake Baking 1877",
+        "filename": "bread_and_cake_baking_1877.pdf",
+        "category": "baking"
+      }
+    ]
+  },
+  "beekeeping": {
+    "name": "Beekeeping",
+    "count": 95,
+    "books": [
+      {
+        "title": "A Book About Bees Their History Habits And Instincts 1886",
+        "filename": "a_book_about_bees-their_history_habits_and_instincts_1886.pdf",
+        "category": "beekeeping"
+      },
+      {
+        "title": "A Dictionary Of Practical Apiculture 1884",
+        "filename": "a_dictionary_of_practical_apiculture_1884.pdf",
+        "category": "beekeeping"
+      },
+      {
+        "title": "A Manual For New Zealand Beekeepers 1848",
+        "filename": "a_manual_for_new_zealand_beekeepers_1848.pdf",
+        "category": "beekeeping"
+      },
+      {
+        "title": "A Manual Of Bee Keeping 1875",
+        "filename": "a_manual_of_bee-keeping_1875.pdf",
+        "category": "beekeeping"
+      },
+      {
+        "title": "A New Plan For Speedily Increasing The Number Of Bee Hives 1795",
+        "filename": "a_new_plan_for_speedily_increasing_the_number_of_bee-hives_1795.pdf",
+        "category": "beekeeping"
+      },
+      {
+        "title": "A Practical Treatise On The Hive And Honey Bee 1860",
+        "filename": "a_practical_treatise_on_the_hive_and_honey_bee_1860.pdf",
+        "category": "beekeeping"
+      },
+      {
+        "title": "A Thousand Answers To Beekeeping Questions 1917",
+        "filename": "a_thousand_answers_to_beekeeping_questions_1917.pdf",
+        "category": "beekeeping"
+      },
+      {
+        "title": "Advanced Bee Culture Its Methods And Management 1891",
+        "filename": "advanced_bee-culture_its_methods_and_management_1891.pdf",
+        "category": "beekeeping"
+      },
+      {
+        "title": "American Honey Plants Together With Those Which Are Of Special Value To The Beekeeper As Sources Of Pollen 1920",
+        "filename": "american_honey_plants_together_with_those_which_are_of_special_value_to_the_beekeeper_as_sources_of_pollen_1920.pdf",
+        "category": "beekeeping"
+      },
+      {
+        "title": "Apiary Experiments Foundation In Comb Building 1900",
+        "filename": "apiary_experiments-foundation_in_comb_building_1900.pdf",
+        "category": "beekeeping"
+      },
+      {
+        "title": "Australian Bee Lore And Bee Culture 1912",
+        "filename": "australian_bee_lore_and_bee_culture_1912.pdf",
+        "category": "beekeeping"
+      },
+      {
+        "title": "Bee Culture 1905",
+        "filename": "bee-culture_1905.pdf",
+        "category": "beekeeping"
+      }
+    ]
+  },
+  "bookbinding": {
+    "name": "Bookbinding",
+    "count": 36,
+    "books": [
+      {
+        "title": "A History Of The Art Of Bookbinding With Some Account Of The Books Of The Ancients 1894",
+        "filename": "a_history_of_the_art_of_bookbinding-with_some_account_of_the_books_of_the_ancients_1894.pdf",
+        "category": "bookbinding"
+      },
+      {
+        "title": "A Note On Bookbinding 1904",
+        "filename": "a_note_on_bookbinding_1904.pdf",
+        "category": "bookbinding"
+      },
+      {
+        "title": "A Primer In Book Production 1945",
+        "filename": "a_primer_in_book_production_1945.pdf",
+        "category": "bookbinding"
+      },
+      {
+        "title": "An Historical Sketch Of Bookbinding 1893",
+        "filename": "an_historical_sketch_of_bookbinding_1893.pdf",
+        "category": "bookbinding"
+      },
+      {
+        "title": "Bookbinding 1914",
+        "filename": "bookbinding_1914.pdf",
+        "category": "bookbinding"
+      },
+      {
+        "title": "Bookbinding And Its Auxiliary Branches 1914",
+        "filename": "bookbinding_and_its_auxiliary_branches_1914.pdf",
+        "category": "bookbinding"
+      },
+      {
+        "title": "Bookbinding And The Care Of Books A Handbook For Amateurs Bookbinders And Librarians 1901",
+        "filename": "bookbinding_and_the_care_of_books-a_handbook_for_amateurs_bookbinders_and_librarians_1901.pdf",
+        "category": "bookbinding"
+      },
+      {
+        "title": "Bookbinding And The Care Of Books A Text Book For Bookbinders And Librarians 1920",
+        "filename": "bookbinding_and_the_care_of_books-a_text-book_for_bookbinders_and_librarians_1920.pdf",
+        "category": "bookbinding"
+      },
+      {
+        "title": "Bookbinding As A Handwork Subject How Books Can Be Bound With Simple Apparatus 1915",
+        "filename": "bookbinding_as_a_handwork_subject-how_books_can_be_bound_with_simple_apparatus_1915.pdf",
+        "category": "bookbinding"
+      },
+      {
+        "title": "Bookbinding For Amateurs Being Descriptions Of The Various Tools And Appliances 1885",
+        "filename": "bookbinding_for_amateurs-being_descriptions_of_the_various_tools_and_appliances_1885.pdf",
+        "category": "bookbinding"
+      },
+      {
+        "title": "Bookbinding For Beginners 1924",
+        "filename": "bookbinding_for_beginners_1924.pdf",
+        "category": "bookbinding"
+      },
+      {
+        "title": "Bookbinding For Bibliophiles Being Notes On Some Technical Features Of The Well Bound Book 1905",
+        "filename": "bookbinding_for_bibliophiles-being_notes_on_some_technical_features_of_the_well_bound_book_1905.pdf",
+        "category": "bookbinding"
+      }
+    ]
+  },
+  "archery": {
+    "name": "Archery",
+    "count": 36,
+    "books": [
+      {
+        "title": "A Study Of The Eskimo Bows In The Us National Museum 1890",
+        "filename": "a_study_of_the_eskimo_bows_in_the_us_national_museum_1890.pdf",
+        "category": "archery"
+      },
+      {
+        "title": "Additional Notes On Arrow Release 1922",
+        "filename": "additional_notes_on_arrow_release_1922.pdf",
+        "category": "archery"
+      },
+      {
+        "title": "American Archery A Vade Mecum Of The Art Of Shooting With The Long Bow 1917",
+        "filename": "american_archery-a_vade_mecum_of_the_art_of_shooting_with_the_long_bow_1917.pdf",
+        "category": "archery"
+      },
+      {
+        "title": "An Essay On Archery 1792",
+        "filename": "an_essay_on_archery_1792.pdf",
+        "category": "archery"
+      },
+      {
+        "title": "Ancient And Modern Methods Of Arrow Release 1885",
+        "filename": "ancient_and_modern_methods_of_arrow-release_1885.pdf",
+        "category": "archery"
+      },
+      {
+        "title": "Anecdotes Of Archery From The Earliest Ages To The Year 1791",
+        "filename": "anecdotes_of_archery-from_the_earliest_ages_to_the_year_1791.pdf",
+        "category": "archery"
+      },
+      {
+        "title": "Archery 1901",
+        "filename": "archery_1901.pdf",
+        "category": "archery"
+      },
+      {
+        "title": "Archery And Archness",
+        "filename": "archery_and_archness.pdf",
+        "category": "archery"
+      },
+      {
+        "title": "Archery Cj Longman And Col H Walrond 1894",
+        "filename": "archery_cj_longman_and_col_h_walrond_1894.pdf",
+        "category": "archery"
+      },
+      {
+        "title": "Archery Its Theory And Practice 1856",
+        "filename": "archery_its_theory_and_practice_1856.pdf",
+        "category": "archery"
+      },
+      {
+        "title": "Archery Its Theory And Practice 1859",
+        "filename": "archery-its_theory_and_practice_1859.pdf",
+        "category": "archery"
+      },
+      {
+        "title": "Archery Rules 1870",
+        "filename": "archery_rules_1870.pdf",
+        "category": "archery"
+      }
+    ]
+  },
+  "coffee_and_tea": {
+    "name": "Coffee And Tea",
+    "count": 47,
+    "books": [
+      {
+        "title": "A Cup Of Coffee 1883",
+        "filename": "a_cup_of_coffee_1883.pdf",
+        "category": "coffee_and_tea"
+      },
+      {
+        "title": "A Description Of Ceylon And Its Great Tea Industry 1900",
+        "filename": "a_description_of_ceylon_and_its_great_tea_industry_1900.pdf",
+        "category": "coffee_and_tea"
+      },
+      {
+        "title": "A Text Book On The Chemistry And Agriculture Of Tea 1893",
+        "filename": "a_text_book_on_the_chemistry_and_agriculture_of_tea_1893.pdf",
+        "category": "coffee_and_tea"
+      },
+      {
+        "title": "A Treatise On The Nature And Cultivation Of Coffee 1865",
+        "filename": "a_treatise_on_the_nature_and_cultivation_of_coffee_1865.pdf",
+        "category": "coffee_and_tea"
+      },
+      {
+        "title": "All About Coffee 1922",
+        "filename": "all_about_coffee_1922.pdf",
+        "category": "coffee_and_tea"
+      },
+      {
+        "title": "All About Tea Vol 2 1935",
+        "filename": "all_about_tea_vol_2_1935.pdf",
+        "category": "coffee_and_tea"
+      },
+      {
+        "title": "Ceylon And Her Planting Enterprize In Tea 1885",
+        "filename": "ceylon_and_her_planting_enterprize_in_tea_1885.pdf",
+        "category": "coffee_and_tea"
+      },
+      {
+        "title": "Chinese Tea Plant  Its Culture And Manufacture In The United States 1877",
+        "filename": "chinese_tea_plant-_its_culture_and_manufacture_in_the_united_states_1877.pdf",
+        "category": "coffee_and_tea"
+      },
+      {
+        "title": "Coffee And Chicory 1864",
+        "filename": "coffee_and_chicory_1864.pdf",
+        "category": "coffee_and_tea"
+      },
+      {
+        "title": "Coffee And India Rubber Culture In Mexico 1898",
+        "filename": "coffee_and_india-rubber_culture_in_mexico_1898.pdf",
+        "category": "coffee_and_tea"
+      },
+      {
+        "title": "Coffee And Repartee 1893",
+        "filename": "coffee_and_repartee_1893.pdf",
+        "category": "coffee_and_tea"
+      },
+      {
+        "title": "Coffee Cultural Practices In The Kona District Of Hawaii 1935",
+        "filename": "coffee_cultural_practices_in_the_kona_district_of_hawaii_1935.pdf",
+        "category": "coffee_and_tea"
+      }
+    ]
+  },
+  "conduct_of_life": {
+    "name": "Conduct Of Life",
+    "count": 65,
+    "books": [
+      {
+        "title": "A Gentle Heart 1896",
+        "filename": "a_gentle_heart_1896.pdf",
+        "category": "conduct_of_life"
+      },
+      {
+        "title": "A Guide To Moral And Social Manners 1872",
+        "filename": "a_guide_to_moral_and_social_manners_1872.pdf",
+        "category": "conduct_of_life"
+      },
+      {
+        "title": "A Reading Circle Manual How To Form And Conduct Reading Circles 1903",
+        "filename": "a_reading_circle_manual-how_to_form_and_conduct_reading_circles_1903.pdf",
+        "category": "conduct_of_life"
+      },
+      {
+        "title": "A True Friend 1880",
+        "filename": "a_true_friend_1880.pdf",
+        "category": "conduct_of_life"
+      },
+      {
+        "title": "A Voice To Youth Addresses To Young Men And Young Ladies 1840",
+        "filename": "a_voice_to_youth-addresses_to_young_men_and_young_ladies_1840.pdf",
+        "category": "conduct_of_life"
+      },
+      {
+        "title": "Adult Bible Classes And How To Conduct Them 1906",
+        "filename": "adult_bible_classes_and_how_to_conduct_them_1906.pdf",
+        "category": "conduct_of_life"
+      },
+      {
+        "title": "Advice To Young Men And Boys 1890",
+        "filename": "advice_to_young_men_and_boys_1890.pdf",
+        "category": "conduct_of_life"
+      },
+      {
+        "title": "Analysis Of Life Or Editorials 1911",
+        "filename": "analysis_of_life_or_editorials_1911.pdf",
+        "category": "conduct_of_life"
+      },
+      {
+        "title": "As Natural As Life 1894",
+        "filename": "as_natural_as_life_1894.pdf",
+        "category": "conduct_of_life"
+      },
+      {
+        "title": "Beaten Paths Or Lessons In Living 1890",
+        "filename": "beaten_paths_or_lessons_in_living_1890.pdf",
+        "category": "conduct_of_life"
+      },
+      {
+        "title": "Beginning Life 1877",
+        "filename": "beginning_life_1877.pdf",
+        "category": "conduct_of_life"
+      },
+      {
+        "title": "Character Photography 1902",
+        "filename": "character_photography_1902.pdf",
+        "category": "conduct_of_life"
+      }
+    ]
+  }
+}
