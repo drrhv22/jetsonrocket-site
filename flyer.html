@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jetson Rocket Radio — Revamped Flyer</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@300;500;700&display=swap');
+    
+    .font-mono-code { font-family: 'JetBrains Mono', monospace; }
+    .font-cinzel { font-family: 'Cinzel', serif; }
+    .font-space { font-family: 'Space Grotesk', sans-serif; }
+
+    /* Glows and animations */
+    .pulse-dot {
+      animation: pulseGlow 2s infinite ease-in-out;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 6px #ff6633); }
+      50% { opacity: 0.4; transform: scale(0.85); filter: drop-shadow(0 0 2px #ff6633); }
+    }
+    
+    .glow-gold {
+      text-shadow: 0 0 12px rgba(255, 179, 71, 0.45), 0 0 24px rgba(255, 120, 40, 0.25);
+    }
+    .box-glow {
+      box-shadow: 0 0 25px rgba(255, 110, 30, 0.2), inset 0 0 15px rgba(255, 110, 30, 0.1);
+    }
+  </style>
+</head>
+<body class="bg-black text-[#e8ebf0] min-h-screen flex flex-col items-center justify-center p-4 selection:bg-[#ff7a30] selection:text-black">
+
+  <!-- Action Bar -->
+  <div class="w-full max-w-[540px] flex items-center justify-between mb-4 px-2">
+    <div class="text-xs font-mono-code text-[#ff9955] tracking-widest flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-[#ff5522] pulse-dot"></span>
+      REVAMPED OFFICIAL FLYER
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="window.print()" class="px-3 py-1.5 text-xs font-mono-code border border-[#ff8844]/40 bg-[#140b08] hover:bg-[#ff7733] hover:text-black text-[#ffaa66] rounded transition">
+        PRINT / SAVE PDF
+      </button>
+    </div>
+  </div>
+
+  <!-- Flyer Container (Aspect ratio ~ 3:4 / Poster scale) -->
+  <div id="flyer" class="relative w-full max-w-[540px] aspect-[3/4] bg-[#070509] rounded-2xl overflow-hidden border border-[#2a1b18] shadow-2xl flex flex-col justify-between p-8 sm:p-10 select-none">
+    
+    <!-- Background Space & Horizon Canvas Effect -->
+    <div class="absolute inset-0 pointer-events-none">
+      <!-- Stars -->
+      <div class="absolute inset-0 opacity-65 bg-[radial-gradient(#ffddbb_1px,transparent_1px)] [background-size:20px_20px]"></div>
+      <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#ffffff_1.5px,transparent_1.5px)] [background-size:48px_48px]"></div>
+      
+      <!-- Martian Atmosphere Glow at Horizon -->
+      <div class="absolute bottom-0 left-0 right-0 h-[48%] bg-gradient-to-t from-[#220d06] via-[#140804]/80 to-transparent"></div>
+      
+      <!-- Curved Planetary Horizon -->
+      <div class="absolute -bottom-[280px] -left-[20%] -right-[20%] h-[380px] rounded-[100%] bg-gradient-to-t from-[#0d0503] to-[#040203] border-t border-[#ff6622]/70 shadow-[0_-15px_40px_rgba(255,90,20,0.35)]"></div>
+    </div>
+
+    <!-- Header Beacon -->
+    <div class="relative z-10 flex items-center justify-center gap-3 text-[11px] sm:text-xs font-mono-code tracking-[0.3em] text-[#ff9955] uppercase">
+      <span class="w-2 h-2 rounded-full bg-[#ff5522] pulse-dot"></span>
+      <span>ON AIR</span>
+      <span class="text-[#ff5522]/50">·</span>
+      <span>LIVE 24/7</span>
+      <span class="text-[#ff5522]/50">·</span>
+      <span>FREE TRANSMISSION</span>
+    </div>
+
+    <!-- Carrier Sine Wave Graphic + Streaking Rocket Trail -->
+    <div class="relative z-10 my-4 flex items-center justify-center">
+      <svg class="w-full h-16 overflow-visible" viewBox="0 0 500 60" fill="none">
+        <!-- Ambient Wave Glow -->
+        <path d="M 0 30 Q 31.25 10 62.5 30 T 125 30 T 187.5 30 T 250 30 T 312.5 30 T 375 30 T 437.5 30 T 500 30" 
+              stroke="#ff5511" stroke-width="4" stroke-linecap="round" opacity="0.25" filter="blur(3px)" />
+        <!-- Sharp Sine Wave -->
+        <path d="M 0 30 Q 31.25 10 62.5 30 T 125 30 T 187.5 30 T 250 30 T 312.5 30 T 375 30 T 437.5 30 T 500 30" 
+              stroke="#ff7733" stroke-width="1.8" stroke-linecap="round" opacity="0.85" />
+        
+        <!-- Streaking Rocket Trail (Diagonal Intercept) -->
+        <defs>
+          <linearGradient id="rocketTrail" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ff3300" stop-opacity="0" />
+            <stop offset="50%" stop-color="#ff7722" stop-opacity="0.5" />
+            <stop offset="90%" stop-color="#ffcc66" stop-opacity="0.9" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="1" />
+          </linearGradient>
+          <filter id="rocketFlare" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+        </defs>
+        
+        <!-- Rocket Exhaust Line -->
+        <line x1="160" y1="52" x2="360" y2="12" stroke="url(#rocketTrail)" stroke-width="2.5" stroke-linecap="round" filter="url(#rocketFlare)" />
+        
+        <!-- Rocket Capsule Flare -->
+        <circle cx="362" cy="11.5" r="3" fill="#ffffff" filter="drop-shadow(0 0 6px #ffe066)" />
+        <path d="M 362 11.5 L 368 10.3 L 365 14 Z" fill="#ffdd88" />
+      </svg>
+    </div>
+
+    <!-- Centerpiece Typography -->
+    <div class="relative z-10 text-center my-auto flex flex-col items-center">
+      <h1 class="font-space font-bold text-4xl sm:text-5xl tracking-[0.28em] text-white leading-tight uppercase pl-[0.28em]">
+        JETSON
+      </h1>
+      <h1 class="font-space font-bold text-4xl sm:text-5xl tracking-[0.28em] text-white leading-tight uppercase pl-[0.28em] mt-1">
+        ROCKET
+      </h1>
+      <h2 class="font-space font-extrabold text-3xl sm:text-4xl tracking-[0.32em] text-[#ff9933] glow-gold uppercase pl-[0.32em] mt-2">
+        RADIO
+      </h2>
+
+      <!-- Subtitle Tagline -->
+      <p class="mt-6 text-sm sm:text-base font-space text-[#c6ccd6] tracking-wide max-w-[380px] mx-auto font-light">
+        Where the past and the future share a frequency.
+      </p>
+
+      <!-- Content Badge Breakdown (Updated with Books & Arcade) -->
+      <div class="mt-5 flex flex-wrap justify-center items-center gap-x-3 gap-y-1 text-[11px] sm:text-xs font-mono-code tracking-widest text-[#ffaa77]/90 uppercase">
+        <span>LO-FI DAYS</span>
+        <span class="text-[#ff5522]">·</span>
+        <span>1950s SCI-FI NIGHTS</span>
+        <span class="text-[#ff5522]">·</span>
+        <span class="text-white font-semibold">SURVIVOR VAULT</span>
+        <span class="text-[#ff5522]">·</span>
+        <span class="text-white font-semibold">RETRO ARCADE</span>
+      </div>
+    </div>
+
+    <!-- Bottom URL Dial & Transmission Tag -->
+    <div class="relative z-10 mt-auto flex flex-col items-center pt-6">
+      
+      <!-- Primary URL Box (Updated to .ORG) -->
+      <a href="https://jetsonrocket.org" target="_blank" class="w-full max-w-[380px] py-3.5 px-6 rounded-lg border-2 border-[#ff7722] bg-[#120703]/90 box-glow text-center group hover:bg-[#ff7722] hover:border-[#ff9944] transition duration-300">
+        <span class="font-mono-code font-bold text-lg sm:text-xl tracking-[0.25em] text-[#ffaa66] group-hover:text-black transition duration-300">
+          JETSONROCKET.ORG
+        </span>
+      </a>
+
+      <!-- Station Meta Footer -->
+      <div class="mt-4 text-[10px] sm:text-[11px] font-mono-code tracking-[0.2em] text-[#8c94a0] uppercase flex items-center justify-center gap-2">
+        <span>AN INDEPENDENT TRANSMISSION</span>
+        <span class="text-[#ff5522]/50">·</span>
+        <span>SAN FRANCISCO, CA</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
