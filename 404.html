@@ -1,101 +1,272 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page not found — Jetson Rocket Property Management</title>
-<meta name="description" content="That page doesn't exist.">
-<meta name="robots" content="noindex">
-<meta name="theme-color" content="#030712">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230B0F19'/%3E%3Crect x='1.5' y='1.5' width='97' height='97' rx='20.5' fill='none' stroke='%2322D3EE' stroke-opacity='.45' stroke-width='3'/%3E%3Ctext x='50' y='68' font-size='56' font-family='monospace' font-weight='700' fill='%2322D3EE' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jetson Rocket Radio — 24/7 Paranormal, Storytelling & Good Music</title>
+  <meta name="description" content="Autonomous 24/7 internet radio broadcasting vintage sci-fi, paranormal mysteries, storytelling, and curated music into the ether.">
+  <meta property="og:title" content="Jetson Rocket Radio — 24/7 Paranormal & Music">
+  <meta property="og:description" content="Broadcasting from the edge of the unknown. Old-time sci-fi horror, paranormal tales, and eclectic sounds.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jetsonrocket.org">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-stream-host="https://stream.jetsonrocket.org">
 
-<a class="skip-link" href="#main">Skip to content</a>
+<div class="crt-scanlines"></div>
 
-<header>
-  <div class="container">
-    <nav class="nav" aria-label="Main">
-      <a class="brand" href="/">Jetson Rocket <span class="brand-tag">[PM]</span></a>
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-tabs" aria-label="Menu">≡</button>
-      <ul class="nav-tabs" id="nav-tabs">
-        <li><a href="/">Overview</a></li>
-        <li><a href="/services.html">Services</a></li>
-        <li><a href="/owners.html">For Owners</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-      </ul>
-      <div class="nav-right">
-        <nav class="lang-switch" aria-label="Language">
-          <a href="/" hreflang="en" aria-current="true">EN</a>
-          <a href="/es/" hreflang="es" lang="es">ES</a>
-          <a href="/zh/" hreflang="zh-Hant" lang="zh-Hant">中文</a>
-        </nav>
-        <a class="btn btn-primary" href="/contact.html">Get in touch</a>
+<div class="station-chassis">
+  
+  <!-- Top Navigation & Brand -->
+  <header class="chassis-header">
+    <div class="nav-links">
+      <a href="#schedule">SCHEDULE</a>
+      <a href="#dispatches">DISPATCHES</a>
+      <a href="#about">ABOUT</a>
+    </div>
+    <div class="brand-badge">
+      <span class="satellite-icon">📡</span>
+      <span class="brand-title">JETSON ROCKET RADIO</span>
+      <span class="freq-tag">88.5 ETHER</span>
+    </div>
+    <div class="header-actions">
+      <button id="dispatch-modal-btn" class="action-btn">TRANSMIT STORY</button>
+    </div>
+  </header>
+
+  <!-- Main Broadcast Receiver Unit -->
+  <main class="receiver-rack">
+
+    <!-- Screen Section: Oscilloscope + VU -->
+    <section class="screen-unit">
+      <div class="screen-bezel">
+        <div class="bezel-top">
+          <span class="bezel-label">OSCILLOSCOPE SIGNAL FREQUENCY</span>
+          <span class="bezel-signal" id="signal-badge">SIGNAL: ACQUIRING</span>
+        </div>
+        <canvas id="scope-canvas" width="420" height="190"></canvas>
+        <div class="screen-bottom">
+          <div class="vu-channel">
+            <span class="vu-tag">CH-A</span>
+            <div class="vu-meter"><div class="vu-bar" id="vu-l"></div></div>
+          </div>
+          <div class="vu-channel">
+            <span class="vu-tag">CH-B</span>
+            <div class="vu-meter"><div class="vu-bar" id="vu-r"></div></div>
+          </div>
+        </div>
       </div>
-    </nav>
-  </div>
-</header>
+    </section>
 
-<main id="main">
-  <section class="hero">
-    <div class="container hero-grid">
+    <!-- Tuner & Playout Console -->
+    <section class="tuner-unit">
+      <div class="tuner-bezel">
+        <div class="scale-ruler">
+          <span>88</span><span>90</span><span>92</span><span>94</span><span>96</span>
+          <span class="scale-highlight">98.1</span>
+          <span>100</span><span>102</span><span>104</span><span>106</span><span>108</span>
+        </div>
+        <div class="dial-needle"></div>
+        <div class="now-playing-window">
+          <div class="window-header">
+            <span class="sub-label">TRANSMISSION FEED</span>
+            <span class="clock-display" id="station-clock">--:--:-- UTC</span>
+          </div>
+          <div class="track-title" id="track-title">INITIALIZING RECEIVER...</div>
+          <div class="track-meta" id="track-meta">24/7 Paranormal · Vintage Audio · Good Music</div>
+        </div>
+      </div>
+
+      <!-- Tactical Controls -->
+      <div class="tactical-deck">
+        <div class="control-box">
+          <button id="master-power-btn" class="power-switch" aria-label="Toggle Power">
+            <span class="switch-light" id="power-light"></span>
+            <span class="switch-text" id="power-text">STANDBY</span>
+          </button>
+          <span class="control-label">RECEIVER POWER</span>
+        </div>
+
+        <div class="control-box volume-box">
+          <input type="range" id="volume-fader" min="0" max="1" step="0.01" value="0.85" aria-label="Master Volume">
+          <div class="vol-labels">
+            <span class="control-label">OUTPUT LEVEL</span>
+            <span id="volume-val">85%</span>
+          </div>
+        </div>
+
+        <div class="control-box format-box">
+          <div class="pill-group">
+            <button class="format-btn active" data-format="mp3">HQ 128K</button>
+            <button class="format-btn" data-format="mobile">MOBILE 64K</button>
+          </div>
+          <span class="control-label">BANDWIDTH MODE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Telemetry Sidebar -->
+    <aside class="telemetry-unit">
+      <div class="on-air-lamp" id="on-air-lamp">
+        <div class="lamp-glow"></div>
+        <span class="lamp-text">ON AIR</span>
+      </div>
+
+      <div class="telemetry-table">
+        <div class="telemetry-row">
+          <span class="t-key">NETWORK</span>
+          <span class="t-val t-active" id="net-status">ONLINE</span>
+        </div>
+        <div class="telemetry-row">
+          <span class="t-key">BITRATE</span>
+          <span class="t-val" id="tele-bitrate">128 KBPS</span>
+        </div>
+        <div class="telemetry-row">
+          <span class="t-key">CODEC</span>
+          <span class="t-val">MP3 / CBR</span>
+        </div>
+        <div class="telemetry-row">
+          <span class="t-key">UPTIME</span>
+          <span class="t-val">24 / 7 / 365</span>
+        </div>
+        <div class="telemetry-row">
+          <span class="t-key">COST</span>
+          <span class="t-val t-free">$0.00 / FREE</span>
+        </div>
+      </div>
+
+      <div class="station-tags">
+        <span class="tag">OPEN SOURCE</span>
+        <span class="tag">AGPL-3.0</span>
+        <span class="tag">ZERO ADS</span>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Broadcast Schedule -->
+  <section id="schedule" class="broadcast-schedule">
+    <h2 class="block-title">📻 24-HOUR ROTATION SCHEDULE</h2>
+    <div class="schedule-grid">
+      <div class="schedule-card" id="slot-midnight">
+        <div class="card-time">21:00 — 06:00 UTC</div>
+        <div class="card-title">🌙 THE MIDNIGHT HOUR</div>
+        <p>Pure uncut vintage suspense, dark fantasy, sci-fi mystery dramas, and late-night uncanny storytelling (<em>X Minus One, Suspense, Lights Out, Dimension X</em>).</p>
+        <div class="card-pills"><span>OTR HORROR</span><span>VINTAGE SCI-FI</span></div>
+      </div>
+      <div class="schedule-card" id="slot-dawn">
+        <div class="card-time">06:00 — 12:00 UTC</div>
+        <div class="card-title">🌄 COSMIC DAWN</div>
+        <p>Atmospheric ambient textures, public domain vintage jazz, lo-fi sci-fi vignettes, and morning awakenings from the archives.</p>
+        <div class="card-pills"><span>AMBIENT</span><span>JAZZ</span><span>SHORT STORIES</span></div>
+      </div>
+      <div class="schedule-card" id="slot-day">
+        <div class="card-title">🛸 ECLECTIC ORBIT</div>
+        <div class="card-time">12:00 — 21:00 UTC</div>
+        <p>Creative Commons independent music, rare public domain recordings, curated listener dispatches, and strange chronicles from around the world.</p>
+        <div class="card-pills"><span>CC MUSIC</span><span>DISPATCHES</span><span>ODDITIES</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dispatches Archive -->
+  <section id="dispatches" class="dispatches-section">
+    <div class="dispatches-header">
       <div>
-        <p class="crumb">404</p>
-        <h1>That page doesn't exist</h1>
-        <p class="lede">The address may have been mistyped, or the page may have moved.</p>
-        <p lang="es">Esa página no existe — <a href="/es/">ir al inicio en español</a>.</p>
-        <p lang="zh-Hant">頁面不存在——<a href="/zh/">前往中文首頁</a>。</p>
-        <div class="actions">
-          <a class="btn btn-primary" href="/">Go to the homepage</a>
-          <a class="btn btn-ghost" href="/contact.html">Contact us</a>
-        </div>
+        <h2 class="block-title">🛸 LISTENER TRANSMISSIONS</h2>
+        <p class="section-sub">Eyewitness accounts, uncanny encounters, and high strangeness submitted from across the globe.</p>
       </div>
-      <div class="term" role="img" aria-label="Terminal readout: page not found, error 404.">
-        <div class="term-bar" aria-hidden="true">
-          <i></i><i></i><i></i>
-          <span class="term-title">jrpm — not found</span>
-        </div>
-        <div class="term-body" aria-hidden="true">
-          <div class="cmd">jrpm open ./this-page</div>
-          <div class="term-row"><span class="k">status</span><span class="leader"></span><span class="v">404 — not found</span></div>
-          <div class="term-row"><span class="k">suggestion</span><span class="leader"></span><span class="v alt">try the homepage</span></div>
-          <div class="term-status"><span class="caret"></span></div>
+      <button id="open-transmit-btn" class="action-btn">TRANSMIT AN ENCOUNTER</button>
+    </div>
+    <div class="dispatches-feed" id="dispatches-feed">
+      <!-- Populated dynamically via player.js -->
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <h2 class="block-title">⚙️ THE PERPETUAL STATION ARCHITECTURE</h2>
+    <div class="about-grid">
+      <div class="about-column">
+        <h3>Self-Sustaining & Non-Commercial</h3>
+        <p>Jetson Rocket Radio is an autonomous open-source 24/7 radio station that operates like a perpetual motion machine: harvesting public-domain stories, synthesizing station bumpers with neural audio, rotating music, and shedding played content to run forever without human intervention.</p>
+        <p>No paywalls, no sponsorships, no tracking, and zero advertising. Built for late-night thinkers, dreamers, and seekers of the strange.</p>
+      </div>
+      <div class="about-column">
+        <h3>Free Open-Source Stack</h3>
+        <ul class="stack-list">
+          <li><strong>Playout & Scheduling:</strong> Python Perpetual Harvester + Liquidsoap / Icecast</li>
+          <li><strong>Storage Vault:</strong> 4TB Ugreen NAS (Chief Neo) + Cloudflare R2</li>
+          <li><strong>Edge Delivery:</strong> Cloudflare Tunnel + GitHub Pages</li>
+          <li><strong>License:</strong> GNU Affero General Public License v3.0 (AGPL-3.0)</li>
+        </ul>
+        <div class="repo-links">
+          <a href="https://github.com/drrhv22/jetsonrocket-site" class="btn-link" target="_blank" rel="noopener">GitHub Repository →</a>
         </div>
       </div>
     </div>
   </section>
-</main>
 
-<footer>
-  <div class="container">
-    <div class="cols">
-      <div>
-        <strong>Jetson Rocket Property Management</strong><br>
-        San Francisco Bay Area · Southern California · Central Texas · <span lang="es">Michoacán, México</span>
-      </div>
-      <ul>
-        <li><a href="/services.html">Services</a></li>
-        <li><a href="/owners.html">For Owners</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-      </ul>
+  <!-- Footer -->
+  <footer class="chassis-footer">
+    <div class="footer-left">
+      <span>🚀 <strong>JETSON ROCKET RADIO</strong> — <code>jetsonrocket.org</code></span>
+      <span class="footer-dim">Broadcasting into the void from San Francisco, CA.</span>
     </div>
-    <p class="legal"><a href="mailto:admin@jetsonrocket.com">admin@jetsonrocket.com</a> · English / <span lang="es">Español</span><br>
-    © 2026 Jetson Rocket Property Management</p>
+    <div class="footer-right">
+      <a href="https://github.com/drrhv22/jetsonrocket-site" target="_blank" rel="noopener">SOURCE</a>
+      <a href="https://archive.org/details/oldtimeradio" target="_blank" rel="noopener">INTERNET ARCHIVE</a>
+      <a href="mailto:transmission@jetsonrocket.org">CONTACT</a>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Modal: Story Submission Form -->
+<div class="modal-backdrop hidden" id="dispatch-modal" role="dialog" aria-modal="true" aria-labelledby="modal-head">
+  <div class="modal-frame">
+    <div class="modal-top">
+      <h3 id="modal-head">TRANSMIT AN ENCOUNTER</h3>
+      <button class="modal-close" id="modal-close-btn" aria-label="Close">&times;</button>
+    </div>
+    <p class="modal-desc">Transmit your paranormal encounter, anomalous sighting, or eerie story. Submissions are stored locally and prepared for upcoming on-air broadcast segments.</p>
+    
+    <form id="dispatch-form">
+      <div class="form-group">
+        <label for="callsign">CALLSIGN / WITNESS IDENTIFIER <span class="req">*</span></label>
+        <input type="text" id="callsign" required placeholder="e.g. Observer 9, Bay Area Listener" maxlength="60">
+      </div>
+
+      <div class="form-group">
+        <label for="category">CLASSIFICATION</label>
+        <select id="category">
+          <option value="UFO / High Strangeness">UFO / High Strangeness</option>
+          <option value="Paranormal Apparition">Paranormal Apparition</option>
+          <option value="Folk Legend / Cryptid">Folk Legend / Cryptid</option>
+          <option value="Liminal & Dream Space">Liminal &amp; Dream Space</option>
+          <option value="Station Greeting">Station Greeting / Transmission</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="story-text">INCIDENT REPORT <span class="req">*</span></label>
+        <textarea id="story-text" rows="5" required placeholder="Describe what you witnessed under the night sky..." maxlength="3000"></textarea>
+        <span class="char-meter"><span id="char-meter-num">0</span> / 3000</span>
+      </div>
+
+      <div class="form-checkbox">
+        <input type="checkbox" id="consent-check" checked>
+        <label for="consent-check">Authorize this dispatch for station broadcast and neural speech synthesis.</label>
+      </div>
+
+      <button type="submit" class="submit-dispatch-btn">BEAM DISPATCH TO VAULT ▶</button>
+    </form>
   </div>
-</footer>
+</div>
 
-<script>
-const menuBtn = document.querySelector('.menu-btn');
-const tabs = document.getElementById('nav-tabs');
-menuBtn.addEventListener('click', () => {
-  const open = tabs.classList.toggle('open');
-  menuBtn.setAttribute('aria-expanded', String(open));
-});
-</script>
+<audio id="audio-core" preload="none" crossorigin="anonymous"></audio>
 
+<script src="player.js"></script>
 </body>
 </html>

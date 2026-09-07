@@ -1,44 +1,21 @@
-# Jetson Rocket Property Management — jetsonrocket.org
+# Jetson Rocket Radio — Official Web Receiver
 
-Static marketing site for Jetson Rocket PM, an owner-operated property management
-service working in the San Francisco Bay Area, Southern California, Central Texas,
-and Michoacán, México.
+**Live Broadcast Web Interface for [jetsonrocket.org](https://jetsonrocket.org)**
 
-Plain HTML/CSS/JS — no build step. Hosted on GitHub Pages behind `jetsonrocket.org`.
+> 24/7 Autonomous Paranormal, Storytelling, and Good Music Radio.
 
-## Structure
+## Overview
+This repository hosts the static client web receiver for Jetson Rocket Radio on GitHub Pages with Cloudflare CDN edge routing.
 
-```
-index.html      Landing page
-services.html   Detailed service offerings
-owners.html     What property owners get, reporting, FAQ
-contact.html    Contact form (Web3Forms) + email
-404.html        Not-found page (root-absolute links, served at any path)
-styles.css      Single shared stylesheet (design tokens at the top)
-CNAME           Custom domain for GitHub Pages
-MAINTENANCE.md  How to edit, deploy, DNS, and form-key setup
-```
+- **URL:** [https://jetsonrocket.org](https://jetsonrocket.org)
+- **Audio Stream Endpoint:** `https://stream.jetsonrocket.org/live.mp3`
+- **Station Engine:** Autonomous Python Harvester + Liquidsoap / Icecast playout daemon on local Mac Mini & Ugreen NAS.
+- **License:** GNU AGPL-3.0
 
-## Local preview
+## Features
+- **Tactical Retro Chassis UI:** Authentic 1950s/60s oscilloscope, analog VU meters, and amber frequency displays.
+- **24/7 Live Stream Audio:** Connects to the continuous broadcast stream with dynamic buffer handling.
+- **Interactive Dispatches:** Collects listener-submitted high-strangeness encounters and paranormal logs.
+- **Zero-Cost Edge Delivery:** Pure static web assets with zero server hosting costs.
 
-```bash
-python3 -m http.server 8000
-# visit http://localhost:8000
-```
-
-## Contact form
-
-`contact.html` posts to [Web3Forms](https://web3forms.com). The access key in the
-form is a placeholder (`YOUR_WEB3FORMS_ACCESS_KEY`) — get a free key at
-web3forms.com (deliver to the business inbox) and replace it. Until then,
-submissions return an error and the page shows the email fallback.
-
-## Editing
-
-Edit → commit → push to `main` → live in about a minute. See `MAINTENANCE.md`.
-
-## Content rules
-
-- Every claim on the site must be literally true of the current operation.
-- No client names, property street addresses, rents, or lease details — ever.
-  Regions and portfolio counts only.
+*(Note: The previous property management placeholder has been preserved in `archive/pm-legacy/` and git branch `archive/pm-legacy`).*
