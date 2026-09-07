@@ -1,6 +1,6 @@
 /**
- * Jetson Rocket Radio — Web Playout & Oscilloscope Engine
- * 24/7 Paranormal, Storytelling, and Good Music
+ * Jetson Rocket Radio — Synchronized 24/7 Live Playout Engine
+ * Everyone hears the exact same moment. One station clock.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const signalBadge = document.getElementById('signal-badge');
   const netStatus = document.getElementById('net-status');
   const teleBitrate = document.getElementById('tele-bitrate');
-  const formatBtns = document.querySelectorAll('.format-btn');
   const scopeCanvas = document.getElementById('scope-canvas');
   const canvasCtx = scopeCanvas.getContext('2d');
   const vuL = document.getElementById('vu-l');
@@ -34,70 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const charMeter = document.getElementById('char-meter-num');
   const dispatchesFeed = document.getElementById('dispatches-feed');
 
-  // ── 24/7 Ether Broadcast Schedule ──
-  // Local bumpers for instant start + verified vintage radio drama episodes
-  const BROADCAST_VAULT = [
-    {
-      title: "Jetson Rocket Radio — Station Identification",
-      meta: "Station ID Bumper · 88.5 FM Ether Frequency",
-      url: "audio/bumpers/bumper_station_id_01.mp3"
-    },
-    {
-      title: "X Minus One — 'Mars Is Heaven' (Ray Bradbury)",
-      meta: "Vintage Sci-Fi Radio · OTR Archive 1955",
-      url: "https://archive.org/download/OTRR_X_Minus_One_Singles/XMinusOne55-05-08003MarsIsHeaven.mp3"
-    },
-    {
-      title: "Jetson Rocket Radio — Paranormal Midnight ID",
-      meta: "Station ID Bumper · Uncut Storytelling from Beyond",
-      url: "audio/bumpers/bumper_station_id_02.mp3"
-    },
-    {
-      title: "Suspense — 'Murder By An Expert'",
-      meta: "Dark Radio Drama · OTR Suspense Series 1947",
-      url: "https://archive.org/download/SUSPENSE3/47-07-24_Murder_By_An_Expert.mp3"
-    },
-    {
-      title: "Jetson Rocket Radio — Autonomous Playout ID",
-      meta: "Station ID Bumper · Zero Algorithms, Pure Ether",
-      url: "audio/bumpers/bumper_station_id_03.mp3"
-    },
-    {
-      title: "Lights Out — 'Poltergeist' (Archival Horror)",
-      meta: "Late-Night Macabre Mystery · Archival Broadcast 1936",
-      url: "https://archive.org/download/LightsOutoldTimeRadio/LightsOut-1936-12-16Poltergeist.mp3"
-    },
-    {
-      title: "Jetson Rocket Radio — Transmission ID",
-      meta: "Station ID Bumper · 24/7 Paranormal & Storytelling",
-      url: "audio/bumpers/bumper_station_id_04.mp3"
-    },
-    {
-      title: "Suspense — 'Six Feet Under'",
-      meta: "Classic Noir Suspense Thriller · CBS 1950",
-      url: "https://archive.org/download/SUSPENSE5/500413SixFeetUnder.mp3"
-    },
-    {
-      title: "Jetson Rocket Radio — San Francisco Frequency",
-      meta: "Station ID Bumper · Broadcasting Into the Void",
-      url: "audio/bumpers/bumper_station_id_05.mp3"
-    },
-    {
-      title: "X Minus One — 'No Contact'",
-      meta: "Space Exploration Mystery · NBC Radio 1955",
-      url: "https://archive.org/download/OTRR_X_Minus_One_Singles/XMinusOne55-04-24001NoContact.mp3"
-    },
-    {
-      title: "Jetson Rocket Radio — Storytelling ID",
-      meta: "Station ID Bumper · Stories from the Threshold",
-      url: "audio/bumpers/bumper_station_id_06.mp3"
-    }
-  ];
+  // Master Synchronized Live Stream Endpoint (routed via Cloudflare Tunnel)
+  const LIVE_STREAM_URL = 'https://stream.jetsonrocket.online/live.mp3';
+  const API_NOW_URL = 'https://stream.jetsonrocket.online/api/now';
 
   let isPoweredOn = false;
   let animId = null;
   let simulatedPhase = 0;
-  let currentTrackIndex = 0;
+  let pollInterval = null;
 
   // Initial Volume
   audio.volume = parseFloat(volumeFader.value);
@@ -130,16 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
     volumeVal.textContent = `${Math.round(val * 100)}%`;
   });
 
-  // Format Switcher
-  formatBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      formatBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const format = btn.dataset.format;
-      teleBitrate.textContent = format === 'mobile' ? '64 KBPS' : '128 KBPS';
-    });
-  });
-
   // Master Power Toggle
   powerBtn.addEventListener('click', () => {
     if (!isPoweredOn) {
@@ -154,18 +87,22 @@ document.addEventListener('DOMContentLoaded', () => {
     powerBtn.classList.add('active');
     powerText.textContent = 'RECEIVER ON';
     onAirLamp.classList.add('live');
-    signalBadge.textContent = 'SIGNAL: TUNED';
-    signalBadge.style.color = 'var(--phosphor-green)';
-    netStatus.textContent = 'BROADCASTING';
+    signalBadge.textContent = 'SIGNAL: TUNING...';
+    signalBadge.style.color = 'var(--amber-glow)';
+    netStatus.textContent = 'CONNECTING';
 
-    playCurrentTrack();
+    tuneInLiveStream();
     startOscilloscope();
+    startPollingNowPlaying();
   }
 
   function turnPowerOff() {
     isPoweredOn = false;
     audio.pause();
     audio.removeAttribute('src');
+    audio.load();
+
+    if (pollInterval) clearInterval(pollInterval);
 
     powerBtn.classList.remove('active');
     powerText.textContent = 'STANDBY';
@@ -174,21 +111,19 @@ document.addEventListener('DOMContentLoaded', () => {
     signalBadge.style.color = 'var(--text-muted)';
     netStatus.textContent = 'ONLINE';
     trackTitle.textContent = 'RECEIVER STANDBY';
-    trackMeta.textContent = 'Click RECEIVER POWER to tune in to the 24/7 broadcast.';
+    trackMeta.textContent = 'Click RECEIVER POWER to tune in to the live synchronized broadcast.';
     vuL.style.width = '0%';
     vuR.style.width = '0%';
     drawScopeIdle();
   }
 
-  function playCurrentTrack() {
-    const track = BROADCAST_VAULT[currentTrackIndex];
-    trackTitle.textContent = track.title;
-    trackMeta.textContent = track.meta;
-    signalBadge.textContent = 'BUFFERING 88.5...';
-    signalBadge.style.color = 'var(--amber-glow)';
+  function tuneInLiveStream() {
+    // Cache buster parameter ensures every device joins the live edge byte buffer
+    const burstStream = `${LIVE_STREAM_URL}?_live=${Date.now()}`;
+    trackTitle.textContent = 'CONNECTING TO LIVE STREAM...';
+    trackMeta.textContent = 'Tuning into 88.5 FM Ether broadcast...';
 
-    // Directly set native HTML5 audio src — standard pipeline, no Web Audio API muting
-    audio.src = track.url;
+    audio.src = burstStream;
     audio.load();
 
     const playPromise = audio.play();
@@ -196,47 +131,61 @@ document.addEventListener('DOMContentLoaded', () => {
       playPromise.then(() => {
         signalBadge.textContent = 'SIGNAL: LOCKED 88.5';
         signalBadge.style.color = 'var(--phosphor-green)';
+        netStatus.textContent = 'ON AIR';
+        fetchNowPlaying();
       }).catch(err => {
-        console.warn('Playback error:', err);
+        console.warn('Playback deferred:', err);
         signalBadge.textContent = 'CLICK TO UNMUTE';
         signalBadge.style.color = 'var(--red-air)';
-        trackMeta.textContent = 'Audio ready. Click anywhere on this page to start sound output.';
+        trackMeta.textContent = 'Broadcast stream ready. Click anywhere on page to enable sound.';
       });
     }
   }
 
-  // Audio Event Listeners
+  // Audio Status Listeners
   audio.addEventListener('playing', () => {
     signalBadge.textContent = 'SIGNAL: LOCKED 88.5';
     signalBadge.style.color = 'var(--phosphor-green)';
+    netStatus.textContent = 'ON AIR';
   });
 
   audio.addEventListener('waiting', () => {
-    signalBadge.textContent = 'BUFFERING...';
+    signalBadge.textContent = 'BUFFERING LIVE...';
     signalBadge.style.color = 'var(--amber-glow)';
-  });
-
-  audio.addEventListener('ended', () => {
-    if (!isPoweredOn) return;
-    // Seamlessly advance to the next track in rotation
-    currentTrackIndex = (currentTrackIndex + 1) % BROADCAST_VAULT.length;
-    playCurrentTrack();
   });
 
   audio.addEventListener('error', (e) => {
     if (!isPoweredOn) return;
-    console.warn('Audio load issue on track, advancing to next:', e);
-    signalBadge.textContent = 'RE-TUNING...';
-    trackMeta.textContent = 'Advancing to next broadcast frequency...';
+    console.warn('Live stream reconnecting...', e);
+    signalBadge.textContent = 'RE-CONNECTING...';
+    trackMeta.textContent = 'Re-syncing with station broadcast clock...';
     setTimeout(() => {
-      if (isPoweredOn) {
-        currentTrackIndex = (currentTrackIndex + 1) % BROADCAST_VAULT.length;
-        playCurrentTrack();
-      }
-    }, 1200);
+      if (isPoweredOn) tuneInLiveStream();
+    }, 2500);
   });
 
-  // ── Oscilloscope Canvas Visualizer (Synthetic Phosphor Renderer) ──
+  // ── Poll Live "Now Playing" Metadata from Broadcaster Engine ──
+  function fetchNowPlaying() {
+    fetch(`${API_NOW_URL}?cb=${Date.now()}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.now_playing) {
+          trackTitle.textContent = data.now_playing.title || 'Jetson Rocket Radio';
+          trackMeta.textContent = `${data.now_playing.artist || '24/7 Ether Broadcast'} · Synchronized Live Radio`;
+        }
+      })
+      .catch(() => {
+        // Fallback title if API call is in-flight
+      });
+  }
+
+  function startPollingNowPlaying() {
+    fetchNowPlaying();
+    if (pollInterval) clearInterval(pollInterval);
+    pollInterval = setInterval(fetchNowPlaying, 6000);
+  }
+
+  // ── Oscilloscope Canvas Visualizer (Synthetic Phosphor Waves) ──
   function startOscilloscope() {
     cancelAnimationFrame(animId);
     renderScopeFrame();
@@ -254,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvasCtx.fillStyle = '#040806';
     canvasCtx.fillRect(0, 0, width, height);
 
-    // Grid lines
+    // CRT grid
     canvasCtx.strokeStyle = 'rgba(0, 255, 157, 0.08)';
     canvasCtx.lineWidth = 1;
     for (let x = 0; x < width; x += 30) {
@@ -264,22 +213,21 @@ document.addEventListener('DOMContentLoaded', () => {
       canvasCtx.beginPath(); canvasCtx.moveTo(0, y); canvasCtx.lineTo(width, y); canvasCtx.stroke();
     }
 
-    // Dynamic wave calculations based on audio playing state
-    const isAudioPlaying = !audio.paused && audio.currentTime > 0;
+    const isAudioPlaying = !audio.paused && audio.readyState >= 2;
     if (isAudioPlaying) {
-      simulatedPhase += 0.07;
+      simulatedPhase += 0.08;
     } else {
       simulatedPhase += 0.01;
     }
 
     const baseAmp = isAudioPlaying ? (Math.sin(simulatedPhase * 1.8) * 0.35 + 0.65) * 55 + 20 : 8;
 
-    // Update VU Meters
+    // Dynamic VU Meters
     const vuPercent = Math.min(100, Math.max(8, (baseAmp / 85) * 100));
     vuL.style.width = `${vuPercent}%`;
-    vuR.style.width = `${Math.min(100, vuPercent * 0.9 + Math.random() * 8)}%`;
+    vuR.style.width = `${Math.min(100, vuPercent * 0.92 + Math.random() * 8)}%`;
 
-    // Draw phosphor wave
+    // Phosphor Waveform
     canvasCtx.beginPath();
     canvasCtx.lineWidth = 2.2;
     canvasCtx.strokeStyle = isAudioPlaying ? '#00ff9d' : 'rgba(0, 255, 157, 0.4)';
@@ -324,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   drawScopeIdle();
 
-  // ── Dispatches Submission ──
+  // ── Dispatches / Submissions ──
   const STORAGE_KEY = 'jr_listener_dispatches_v1';
 
   function loadDispatches() {
