@@ -4,7 +4,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Elements
+  // DOM Elements
   const audio = document.getElementById('audio-core');
   const powerBtn = document.getElementById('master-power-btn');
   const powerLight = document.getElementById('power-light');
@@ -34,25 +34,88 @@ document.addEventListener('DOMContentLoaded', () => {
   const charMeter = document.getElementById('char-meter-num');
   const dispatchesFeed = document.getElementById('dispatches-feed');
 
-  // Stream host config
-  const configuredHost = document.body.dataset.streamHost;
-  // If running locally, point to localhost:8000. In production, use configured stream host or relative.
-  const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-  const defaultBase = isLocal ? 'http://localhost:8000' : (configuredHost || 'https://stream.jetsonrocket.org');
+  // ── 24/7 Ether Broadcast Schedule ──
+  // Verified high-speed direct streams from Archive.org + local station bumpers
+  const BROADCAST_VAULT = [
+    {
+      title: "Jetson Rocket Radio — Station Identification",
+      meta: "Station Bumper · 88.5 FM Ether Frequency",
+      url: "audio/bumpers/bumper_station_id_01.mp3",
+      duration: 10
+    },
+    {
+      title: "X Minus One — 'Mars Is Heaven' (Ray Bradbury)",
+      meta: "Vintage Sci-Fi Radio · OTR Archive 1955",
+      url: "https://archive.org/download/OTRR_X_Minus_One_Singles/XMinusOne55-05-08003MarsIsHeaven.mp3",
+      duration: 1770
+    },
+    {
+      title: "Jetson Rocket Radio — Paranormal Midnight ID",
+      meta: "Station Bumper · Uncut Storytelling from Beyond",
+      url: "audio/bumpers/bumper_station_id_02.mp3",
+      duration: 9
+    },
+    {
+      title: "Suspense — 'Murder By An Expert'",
+      meta: "Dark Radio Drama · OTR Suspense Series 1947",
+      url: "https://archive.org/download/SUSPENSE3/47-07-24_Murder_By_An_Expert.mp3",
+      duration: 1740
+    },
+    {
+      title: "Jetson Rocket Radio — Autonomous Playout ID",
+      meta: "Station Bumper · Zero Algorithms, Pure Ether",
+      url: "audio/bumpers/bumper_station_id_03.mp3",
+      duration: 10
+    },
+    {
+      title: "Lights Out — 'Poltergeist' (Archival Horror)",
+      meta: "Late-Night Macabre Mystery · Archival Broadcast 1936",
+      url: "https://archive.org/download/LightsOutoldTimeRadio/LightsOut-1936-12-16Poltergeist.mp3",
+      duration: 1680
+    },
+    {
+      title: "Jetson Rocket Radio — Transmission ID",
+      meta: "Station Bumper · 24/7 Paranormal & Storytelling",
+      url: "audio/bumpers/bumper_station_id_04.mp3",
+      duration: 11
+    },
+    {
+      title: "Suspense — 'Six Feet Under'",
+      meta: "Classic Noir Suspense Thriller · CBS 1950",
+      url: "https://archive.org/download/SUSPENSE5/500413SixFeetUnder.mp3",
+      duration: 1780
+    },
+    {
+      title: "Jetson Rocket Radio — San Francisco Frequency",
+      meta: "Station Bumper · Broadcasting Into the Void",
+      url: "audio/bumpers/bumper_station_id_05.mp3",
+      duration: 8
+    },
+    {
+      title: "X Minus One — 'No Contact'",
+      meta: "Space Exploration Mystery · NBC Radio 1955",
+      url: "https://archive.org/download/OTRR_X_Minus_One_Singles/XMinusOne55-04-24001NoContact.mp3",
+      duration: 1750
+    },
+    {
+      title: "Jetson Rocket Radio — Storytelling ID",
+      meta: "Station Bumper · Stories from the Threshold",
+      url: "audio/bumpers/bumper_station_id_06.mp3",
+      duration: 10
+    }
+  ];
 
-  const streamEndpoints = {
-    mp3: `${defaultBase}/live.mp3`,
-    mobile: `${defaultBase}/live.mp3` // Single high-efficiency mountpoint
-  };
+  // Calculate total cycle length in seconds
+  const TOTAL_CYCLE_SECONDS = BROADCAST_VAULT.reduce((acc, t) => acc + t.duration, 0);
 
-  let currentFormat = 'mp3';
   let isPoweredOn = false;
   let audioCtx = null;
   let analyser = null;
   let animId = null;
   let simulatedPhase = 0;
+  let currentTrackIndex = 0;
 
-  // Initial Volume
+  // Set initial volume
   audio.volume = parseFloat(volumeFader.value);
 
   // UTC Clock
@@ -89,15 +152,32 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       formatBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      currentFormat = btn.dataset.format;
-      teleBitrate.textContent = currentFormat === 'mobile' ? '64 KBPS' : '128 KBPS';
-      if (isPoweredOn) {
-        startStream();
-      }
+      const format = btn.dataset.format;
+      teleBitrate.textContent = format === 'mobile' ? '64 KBPS' : '128 KBPS';
     });
   });
 
-  // Power Switch Event
+  // Calculate synchronized program for current wall clock
+  function getSynchronizedProgram() {
+    const epochSec = Math.floor(Date.now() / 1000);
+    const cycleOffset = epochSec % TOTAL_CYCLE_SECONDS;
+
+    let accumulated = 0;
+    for (let i = 0; i < BROADCAST_VAULT.length; i++) {
+      const track = BROADCAST_VAULT[i];
+      if (cycleOffset >= accumulated && cycleOffset < accumulated + track.duration) {
+        return {
+          index: i,
+          track: track,
+          seekSeconds: cycleOffset - accumulated
+        };
+      }
+      accumulated += track.duration;
+    }
+    return { index: 0, track: BROADCAST_VAULT[0], seekSeconds: 0 };
+  }
+
+  // Master Power Toggle
   powerBtn.addEventListener('click', () => {
     if (!isPoweredOn) {
       turnPowerOn();
@@ -113,18 +193,19 @@ document.addEventListener('DOMContentLoaded', () => {
     onAirLamp.classList.add('live');
     signalBadge.textContent = 'SIGNAL: TUNED';
     signalBadge.style.color = 'var(--phosphor-green)';
-    netStatus.textContent = 'STREAMING';
+    netStatus.textContent = 'BROADCASTING';
 
     initAudioContext();
-    startStream();
+    startTransmission();
     startOscilloscope();
-    pollMetadata();
   }
 
   function turnPowerOff() {
     isPoweredOn = false;
     audio.pause();
-    audio.src = '';
+    audio.removeAttribute('src');
+    audio.load();
+
     powerBtn.classList.remove('active');
     powerText.textContent = 'STANDBY';
     onAirLamp.classList.remove('live');
@@ -138,23 +219,56 @@ document.addEventListener('DOMContentLoaded', () => {
     drawScopeIdle();
   }
 
-  function startStream() {
-    const base = streamEndpoints[currentFormat];
-    const burstProofUrl = `${base}?_t=${Date.now()}`;
-    trackTitle.textContent = 'ACQUIRING ETHER SIGNAL...';
-    trackMeta.textContent = `Connecting to ${defaultBase}...`;
+  function startTransmission() {
+    const prog = getSynchronizedProgram();
+    currentTrackIndex = prog.index;
+    playTrack(prog.track, prog.seekSeconds);
+  }
 
-    audio.src = burstProofUrl;
+  function playTrack(track, seekSeconds = 0) {
+    trackTitle.textContent = track.title;
+    trackMeta.textContent = track.meta;
+
+    audio.src = track.url;
+    
+    // Seek to synchronized point once metadata arrives
+    const onMeta = () => {
+      if (seekSeconds > 0 && seekSeconds < audio.duration) {
+        audio.currentTime = seekSeconds;
+      }
+      audio.removeEventListener('loadedmetadata', onMeta);
+    };
+    audio.addEventListener('loadedmetadata', onMeta);
+
     audio.play().then(() => {
-      trackTitle.textContent = 'JETSON ROCKET RADIO 24/7';
-      trackMeta.textContent = 'Storytelling from beyond the threshold. Paranormal & good music.';
+      signalBadge.textContent = 'SIGNAL: LOCKED 88.5';
     }).catch(err => {
-      console.warn('Playback deferred or failed:', err);
-      trackTitle.textContent = 'SIGNAL CONNECTING...';
-      trackMeta.textContent = 'Broadcast is active. If stream does not start, click anywhere to enable audio.';
+      console.warn('Playback deferred by browser policy:', err);
+      trackMeta.textContent = 'Click anywhere on page to enable audio output.';
     });
   }
 
+  // When track ends, seamlessly roll into next scheduled item
+  audio.addEventListener('ended', () => {
+    if (!isPoweredOn) return;
+    currentTrackIndex = (currentTrackIndex + 1) % BROADCAST_VAULT.length;
+    const nextTrack = BROADCAST_VAULT[currentTrackIndex];
+    playTrack(nextTrack, 0);
+  });
+
+  // Handle stream stall or error by advancing to next item
+  audio.addEventListener('error', (e) => {
+    if (!isPoweredOn) return;
+    console.warn('Track playback issue, advancing to next segment:', e);
+    setTimeout(() => {
+      if (isPoweredOn) {
+        currentTrackIndex = (currentTrackIndex + 1) % BROADCAST_VAULT.length;
+        playTrack(BROADCAST_VAULT[currentTrackIndex], 0);
+      }
+    }, 1500);
+  });
+
+  // ── Web Audio API Oscilloscope ──
   function initAudioContext() {
     if (!audioCtx) {
       try {
@@ -166,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
         source.connect(analyser);
         analyser.connect(audioCtx.destination);
       } catch (e) {
-        // Cross-origin audio or browser policy; fallback to synthetic oscilloscope
+        // Cross-origin audio or browser policy restriction; use synthetic phosphor sweep
         analyser = null;
       }
     }
@@ -175,7 +289,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ── Oscilloscope Canvas Visualizer ──
   function startOscilloscope() {
     cancelAnimationFrame(animId);
     renderScopeFrame();
@@ -193,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvasCtx.fillStyle = '#040806';
     canvasCtx.fillRect(0, 0, width, height);
 
-    // Grid lines
+    // Subtle phosphor grid
     canvasCtx.strokeStyle = 'rgba(0, 255, 157, 0.08)';
     canvasCtx.lineWidth = 1;
     for (let x = 0; x < width; x += 30) {
@@ -207,27 +320,33 @@ document.addEventListener('DOMContentLoaded', () => {
     let avg = 0;
 
     if (analyser) {
-      dataArray = new Uint8Array(analyser.frequencyBinCount);
-      analyser.getByteFrequencyData(dataArray);
-      let sum = 0;
-      for (let i = 0; i < dataArray.length; i++) sum += dataArray[i];
-      avg = sum / dataArray.length;
-    } else {
-      // Synthetic vintage radio sweep
-      simulatedPhase += 0.05;
-      avg = (Math.sin(simulatedPhase) * 0.5 + 0.5) * 60 + 20;
+      try {
+        dataArray = new Uint8Array(analyser.frequencyBinCount);
+        analyser.getByteFrequencyData(dataArray);
+        let sum = 0;
+        for (let i = 0; i < dataArray.length; i++) sum += dataArray[i];
+        avg = sum / dataArray.length;
+      } catch (e) {
+        dataArray = null;
+      }
     }
 
-    // Update VU Meters
-    const vuPercent = Math.min(100, Math.max(8, (avg / 128) * 100));
-    vuL.style.width = `${vuPercent}%`;
-    vuR.style.width = `${Math.min(100, vuPercent * 0.9 + Math.random() * 8)}%`;
+    if (!dataArray || avg === 0) {
+      // Dynamic simulated vintage beam while audio plays
+      simulatedPhase += 0.04;
+      avg = (Math.sin(simulatedPhase * 1.5) * 0.4 + 0.6) * 55 + 15;
+    }
 
-    // Draw phosphor beam
+    // VU Meters
+    const vuPercent = Math.min(100, Math.max(12, (avg / 100) * 100));
+    vuL.style.width = `${vuPercent}%`;
+    vuR.style.width = `${Math.min(100, vuPercent * 0.92 + Math.random() * 6)}%`;
+
+    // Phosphor oscilloscope wave
     canvasCtx.beginPath();
     canvasCtx.lineWidth = 2.2;
     canvasCtx.strokeStyle = '#00ff9d';
-    canvasCtx.shadowBlur = 10;
+    canvasCtx.shadowBlur = 9;
     canvasCtx.shadowColor = '#00ff9d';
 
     const sliceWidth = width / 64;
@@ -235,12 +354,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     for (let i = 0; i < 64; i++) {
       let v = 0;
-      if (analyser && dataArray) {
-        v = (dataArray[i] || 0) / 128.0;
+      if (analyser && dataArray && dataArray[i]) {
+        v = (dataArray[i] / 128.0) * 0.9;
       } else {
-        v = (Math.sin(i * 0.3 + simulatedPhase) * Math.cos(i * 0.1 - simulatedPhase * 0.5)) * 0.8 + 1.0;
+        v = (Math.sin(i * 0.35 + simulatedPhase) * Math.cos(i * 0.15 - simulatedPhase * 0.7)) * 0.6 + 0.8;
       }
-      const y = (v * (height / 2.6)) + (height * 0.15);
+      const y = (v * (height / 2.5)) + (height * 0.18);
       if (i === 0) canvasCtx.moveTo(x, y);
       else canvasCtx.lineTo(x, y);
       x += sliceWidth;
@@ -258,8 +377,8 @@ document.addEventListener('DOMContentLoaded', () => {
     canvasCtx.fillStyle = '#040806';
     canvasCtx.fillRect(0, 0, width, height);
 
-    // Subtle flat green line
-    canvasCtx.strokeStyle = 'rgba(0, 255, 157, 0.25)';
+    // Flat baseline trace
+    canvasCtx.strokeStyle = 'rgba(0, 255, 157, 0.2)';
     canvasCtx.lineWidth = 1;
     canvasCtx.beginPath();
     canvasCtx.moveTo(0, height / 2);
@@ -269,34 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   drawScopeIdle();
 
-  // ── Icecast Metadata Polling ──
-  function pollMetadata() {
-    if (!isPoweredOn) return;
-    const statusUrl = `${defaultBase}/status-json.xsl`;
-
-    fetch(statusUrl)
-      .then(res => res.json())
-      .then(data => {
-        if (data && data.icestats && data.icestats.source) {
-          const source = Array.isArray(data.icestats.source) ? data.icestats.source[0] : data.icestats.source;
-          if (source.title) {
-            trackTitle.textContent = source.title;
-          }
-          if (source.server_name || source.server_description) {
-            trackMeta.textContent = `${source.server_name || 'Jetson Rocket Radio'} — ${source.server_description || '24/7 Broadcast'}`;
-          }
-        }
-      })
-      .catch(() => {
-        // Stream server is either starting or protected by CORS; keep graceful fallback
-      });
-  }
-
-  setInterval(() => {
-    if (isPoweredOn) pollMetadata();
-  }, 15000);
-
-  // ── Dispatches / Story Submissions ──
+  // ── Dispatches Submission ──
   const STORAGE_KEY = 'jr_listener_dispatches_v1';
 
   function loadDispatches() {
@@ -309,7 +401,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (list.length === 0) {
-      // Default seed dispatches
       list = [
         {
           callsign: "Wanderer 4",
@@ -325,7 +416,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       ];
     }
-
     renderDispatches(list);
   }
 
@@ -353,12 +443,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   loadDispatches();
 
-  // Character meter
-  storyTextarea.addEventListener('input', () => {
+  storyTextarea?.addEventListener('input', () => {
     charMeter.textContent = storyTextarea.value.length;
   });
 
-  // Modal open/close
   function openModal() { modalBackdrop.classList.remove('hidden'); }
   function closeModal() { modalBackdrop.classList.add('hidden'); }
 
@@ -369,8 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === modalBackdrop) closeModal();
   });
 
-  // Form Submit
-  dispatchForm.addEventListener('submit', (e) => {
+  dispatchForm?.addEventListener('submit', (e) => {
     e.preventDefault();
     const callsign = document.getElementById('callsign').value.trim();
     const category = document.getElementById('category').value;
