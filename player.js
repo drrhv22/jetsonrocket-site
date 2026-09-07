@@ -35,87 +35,71 @@ document.addEventListener('DOMContentLoaded', () => {
   const dispatchesFeed = document.getElementById('dispatches-feed');
 
   // ── 24/7 Ether Broadcast Schedule ──
-  // Verified high-speed direct streams from Archive.org + local station bumpers
+  // Local bumpers for instant start + verified vintage radio drama episodes
   const BROADCAST_VAULT = [
     {
       title: "Jetson Rocket Radio — Station Identification",
-      meta: "Station Bumper · 88.5 FM Ether Frequency",
-      url: "audio/bumpers/bumper_station_id_01.mp3",
-      duration: 10
+      meta: "Station ID Bumper · 88.5 FM Ether Frequency",
+      url: "audio/bumpers/bumper_station_id_01.mp3"
     },
     {
       title: "X Minus One — 'Mars Is Heaven' (Ray Bradbury)",
       meta: "Vintage Sci-Fi Radio · OTR Archive 1955",
-      url: "https://archive.org/download/OTRR_X_Minus_One_Singles/XMinusOne55-05-08003MarsIsHeaven.mp3",
-      duration: 1770
+      url: "https://archive.org/download/OTRR_X_Minus_One_Singles/XMinusOne55-05-08003MarsIsHeaven.mp3"
     },
     {
       title: "Jetson Rocket Radio — Paranormal Midnight ID",
-      meta: "Station Bumper · Uncut Storytelling from Beyond",
-      url: "audio/bumpers/bumper_station_id_02.mp3",
-      duration: 9
+      meta: "Station ID Bumper · Uncut Storytelling from Beyond",
+      url: "audio/bumpers/bumper_station_id_02.mp3"
     },
     {
       title: "Suspense — 'Murder By An Expert'",
       meta: "Dark Radio Drama · OTR Suspense Series 1947",
-      url: "https://archive.org/download/SUSPENSE3/47-07-24_Murder_By_An_Expert.mp3",
-      duration: 1740
+      url: "https://archive.org/download/SUSPENSE3/47-07-24_Murder_By_An_Expert.mp3"
     },
     {
       title: "Jetson Rocket Radio — Autonomous Playout ID",
-      meta: "Station Bumper · Zero Algorithms, Pure Ether",
-      url: "audio/bumpers/bumper_station_id_03.mp3",
-      duration: 10
+      meta: "Station ID Bumper · Zero Algorithms, Pure Ether",
+      url: "audio/bumpers/bumper_station_id_03.mp3"
     },
     {
       title: "Lights Out — 'Poltergeist' (Archival Horror)",
       meta: "Late-Night Macabre Mystery · Archival Broadcast 1936",
-      url: "https://archive.org/download/LightsOutoldTimeRadio/LightsOut-1936-12-16Poltergeist.mp3",
-      duration: 1680
+      url: "https://archive.org/download/LightsOutoldTimeRadio/LightsOut-1936-12-16Poltergeist.mp3"
     },
     {
       title: "Jetson Rocket Radio — Transmission ID",
-      meta: "Station Bumper · 24/7 Paranormal & Storytelling",
-      url: "audio/bumpers/bumper_station_id_04.mp3",
-      duration: 11
+      meta: "Station ID Bumper · 24/7 Paranormal & Storytelling",
+      url: "audio/bumpers/bumper_station_id_04.mp3"
     },
     {
       title: "Suspense — 'Six Feet Under'",
       meta: "Classic Noir Suspense Thriller · CBS 1950",
-      url: "https://archive.org/download/SUSPENSE5/500413SixFeetUnder.mp3",
-      duration: 1780
+      url: "https://archive.org/download/SUSPENSE5/500413SixFeetUnder.mp3"
     },
     {
       title: "Jetson Rocket Radio — San Francisco Frequency",
-      meta: "Station Bumper · Broadcasting Into the Void",
-      url: "audio/bumpers/bumper_station_id_05.mp3",
-      duration: 8
+      meta: "Station ID Bumper · Broadcasting Into the Void",
+      url: "audio/bumpers/bumper_station_id_05.mp3"
     },
     {
       title: "X Minus One — 'No Contact'",
       meta: "Space Exploration Mystery · NBC Radio 1955",
-      url: "https://archive.org/download/OTRR_X_Minus_One_Singles/XMinusOne55-04-24001NoContact.mp3",
-      duration: 1750
+      url: "https://archive.org/download/OTRR_X_Minus_One_Singles/XMinusOne55-04-24001NoContact.mp3"
     },
     {
       title: "Jetson Rocket Radio — Storytelling ID",
-      meta: "Station Bumper · Stories from the Threshold",
-      url: "audio/bumpers/bumper_station_id_06.mp3",
-      duration: 10
+      meta: "Station ID Bumper · Stories from the Threshold",
+      url: "audio/bumpers/bumper_station_id_06.mp3"
     }
   ];
 
-  // Calculate total cycle length in seconds
-  const TOTAL_CYCLE_SECONDS = BROADCAST_VAULT.reduce((acc, t) => acc + t.duration, 0);
-
   let isPoweredOn = false;
-  let audioCtx = null;
-  let analyser = null;
   let animId = null;
   let simulatedPhase = 0;
   let currentTrackIndex = 0;
 
-  // Set initial volume
+  // Initial Volume
   audio.volume = parseFloat(volumeFader.value);
 
   // UTC Clock
@@ -126,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const s = String(now.getUTCSeconds()).padStart(2, '0');
     stationClock.textContent = `${h}:${m}:${s} UTC`;
 
-    // Highlight active schedule block based on UTC hour
     const hour = now.getUTCHours();
     document.querySelectorAll('.schedule-card').forEach(card => card.classList.remove('current'));
     if (hour >= 21 || hour < 6) {
@@ -157,26 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Calculate synchronized program for current wall clock
-  function getSynchronizedProgram() {
-    const epochSec = Math.floor(Date.now() / 1000);
-    const cycleOffset = epochSec % TOTAL_CYCLE_SECONDS;
-
-    let accumulated = 0;
-    for (let i = 0; i < BROADCAST_VAULT.length; i++) {
-      const track = BROADCAST_VAULT[i];
-      if (cycleOffset >= accumulated && cycleOffset < accumulated + track.duration) {
-        return {
-          index: i,
-          track: track,
-          seekSeconds: cycleOffset - accumulated
-        };
-      }
-      accumulated += track.duration;
-    }
-    return { index: 0, track: BROADCAST_VAULT[0], seekSeconds: 0 };
-  }
-
   // Master Power Toggle
   powerBtn.addEventListener('click', () => {
     if (!isPoweredOn) {
@@ -195,8 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     signalBadge.style.color = 'var(--phosphor-green)';
     netStatus.textContent = 'BROADCASTING';
 
-    initAudioContext();
-    startTransmission();
+    playCurrentTrack();
     startOscilloscope();
   }
 
@@ -204,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
     isPoweredOn = false;
     audio.pause();
     audio.removeAttribute('src');
-    audio.load();
 
     powerBtn.classList.remove('active');
     powerText.textContent = 'STANDBY';
@@ -219,76 +180,63 @@ document.addEventListener('DOMContentLoaded', () => {
     drawScopeIdle();
   }
 
-  function startTransmission() {
-    const prog = getSynchronizedProgram();
-    currentTrackIndex = prog.index;
-    playTrack(prog.track, prog.seekSeconds);
-  }
-
-  function playTrack(track, seekSeconds = 0) {
+  function playCurrentTrack() {
+    const track = BROADCAST_VAULT[currentTrackIndex];
     trackTitle.textContent = track.title;
     trackMeta.textContent = track.meta;
+    signalBadge.textContent = 'BUFFERING 88.5...';
+    signalBadge.style.color = 'var(--amber-glow)';
 
+    // Directly set native HTML5 audio src — standard pipeline, no Web Audio API muting
     audio.src = track.url;
-    
-    // Seek to synchronized point once metadata arrives
-    const onMeta = () => {
-      if (seekSeconds > 0 && seekSeconds < audio.duration) {
-        audio.currentTime = seekSeconds;
-      }
-      audio.removeEventListener('loadedmetadata', onMeta);
-    };
-    audio.addEventListener('loadedmetadata', onMeta);
+    audio.load();
 
-    audio.play().then(() => {
-      signalBadge.textContent = 'SIGNAL: LOCKED 88.5';
-    }).catch(err => {
-      console.warn('Playback deferred by browser policy:', err);
-      trackMeta.textContent = 'Click anywhere on page to enable audio output.';
-    });
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        signalBadge.textContent = 'SIGNAL: LOCKED 88.5';
+        signalBadge.style.color = 'var(--phosphor-green)';
+      }).catch(err => {
+        console.warn('Playback error:', err);
+        signalBadge.textContent = 'CLICK TO UNMUTE';
+        signalBadge.style.color = 'var(--red-air)';
+        trackMeta.textContent = 'Audio ready. Click anywhere on this page to start sound output.';
+      });
+    }
   }
 
-  // When track ends, seamlessly roll into next scheduled item
-  audio.addEventListener('ended', () => {
-    if (!isPoweredOn) return;
-    currentTrackIndex = (currentTrackIndex + 1) % BROADCAST_VAULT.length;
-    const nextTrack = BROADCAST_VAULT[currentTrackIndex];
-    playTrack(nextTrack, 0);
+  // Audio Event Listeners
+  audio.addEventListener('playing', () => {
+    signalBadge.textContent = 'SIGNAL: LOCKED 88.5';
+    signalBadge.style.color = 'var(--phosphor-green)';
   });
 
-  // Handle stream stall or error by advancing to next item
+  audio.addEventListener('waiting', () => {
+    signalBadge.textContent = 'BUFFERING...';
+    signalBadge.style.color = 'var(--amber-glow)';
+  });
+
+  audio.addEventListener('ended', () => {
+    if (!isPoweredOn) return;
+    // Seamlessly advance to the next track in rotation
+    currentTrackIndex = (currentTrackIndex + 1) % BROADCAST_VAULT.length;
+    playCurrentTrack();
+  });
+
   audio.addEventListener('error', (e) => {
     if (!isPoweredOn) return;
-    console.warn('Track playback issue, advancing to next segment:', e);
+    console.warn('Audio load issue on track, advancing to next:', e);
+    signalBadge.textContent = 'RE-TUNING...';
+    trackMeta.textContent = 'Advancing to next broadcast frequency...';
     setTimeout(() => {
       if (isPoweredOn) {
         currentTrackIndex = (currentTrackIndex + 1) % BROADCAST_VAULT.length;
-        playTrack(BROADCAST_VAULT[currentTrackIndex], 0);
+        playCurrentTrack();
       }
-    }, 1500);
+    }, 1200);
   });
 
-  // ── Web Audio API Oscilloscope ──
-  function initAudioContext() {
-    if (!audioCtx) {
-      try {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        audioCtx = new AudioContext();
-        analyser = audioCtx.createAnalyser();
-        analyser.fftSize = 128;
-        const source = audioCtx.createMediaElementSource(audio);
-        source.connect(analyser);
-        analyser.connect(audioCtx.destination);
-      } catch (e) {
-        // Cross-origin audio or browser policy restriction; use synthetic phosphor sweep
-        analyser = null;
-      }
-    }
-    if (audioCtx && audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-  }
-
+  // ── Oscilloscope Canvas Visualizer (Synthetic Phosphor Renderer) ──
   function startOscilloscope() {
     cancelAnimationFrame(animId);
     renderScopeFrame();
@@ -306,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvasCtx.fillStyle = '#040806';
     canvasCtx.fillRect(0, 0, width, height);
 
-    // Subtle phosphor grid
+    // Grid lines
     canvasCtx.strokeStyle = 'rgba(0, 255, 157, 0.08)';
     canvasCtx.lineWidth = 1;
     for (let x = 0; x < width; x += 30) {
@@ -316,37 +264,26 @@ document.addEventListener('DOMContentLoaded', () => {
       canvasCtx.beginPath(); canvasCtx.moveTo(0, y); canvasCtx.lineTo(width, y); canvasCtx.stroke();
     }
 
-    let dataArray;
-    let avg = 0;
-
-    if (analyser) {
-      try {
-        dataArray = new Uint8Array(analyser.frequencyBinCount);
-        analyser.getByteFrequencyData(dataArray);
-        let sum = 0;
-        for (let i = 0; i < dataArray.length; i++) sum += dataArray[i];
-        avg = sum / dataArray.length;
-      } catch (e) {
-        dataArray = null;
-      }
+    // Dynamic wave calculations based on audio playing state
+    const isAudioPlaying = !audio.paused && audio.currentTime > 0;
+    if (isAudioPlaying) {
+      simulatedPhase += 0.07;
+    } else {
+      simulatedPhase += 0.01;
     }
 
-    if (!dataArray || avg === 0) {
-      // Dynamic simulated vintage beam while audio plays
-      simulatedPhase += 0.04;
-      avg = (Math.sin(simulatedPhase * 1.5) * 0.4 + 0.6) * 55 + 15;
-    }
+    const baseAmp = isAudioPlaying ? (Math.sin(simulatedPhase * 1.8) * 0.35 + 0.65) * 55 + 20 : 8;
 
-    // VU Meters
-    const vuPercent = Math.min(100, Math.max(12, (avg / 100) * 100));
+    // Update VU Meters
+    const vuPercent = Math.min(100, Math.max(8, (baseAmp / 85) * 100));
     vuL.style.width = `${vuPercent}%`;
-    vuR.style.width = `${Math.min(100, vuPercent * 0.92 + Math.random() * 6)}%`;
+    vuR.style.width = `${Math.min(100, vuPercent * 0.9 + Math.random() * 8)}%`;
 
-    // Phosphor oscilloscope wave
+    // Draw phosphor wave
     canvasCtx.beginPath();
     canvasCtx.lineWidth = 2.2;
-    canvasCtx.strokeStyle = '#00ff9d';
-    canvasCtx.shadowBlur = 9;
+    canvasCtx.strokeStyle = isAudioPlaying ? '#00ff9d' : 'rgba(0, 255, 157, 0.4)';
+    canvasCtx.shadowBlur = isAudioPlaying ? 10 : 2;
     canvasCtx.shadowColor = '#00ff9d';
 
     const sliceWidth = width / 64;
@@ -354,12 +291,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     for (let i = 0; i < 64; i++) {
       let v = 0;
-      if (analyser && dataArray && dataArray[i]) {
-        v = (dataArray[i] / 128.0) * 0.9;
+      if (isAudioPlaying) {
+        v = (Math.sin(i * 0.35 + simulatedPhase) * Math.cos(i * 0.18 - simulatedPhase * 0.6)) * 0.75 + 1.0;
       } else {
-        v = (Math.sin(i * 0.35 + simulatedPhase) * Math.cos(i * 0.15 - simulatedPhase * 0.7)) * 0.6 + 0.8;
+        v = 1.0 + Math.sin(i * 0.1 + simulatedPhase) * 0.05;
       }
-      const y = (v * (height / 2.5)) + (height * 0.18);
+      const y = (v * (height / 2.6)) + (height * 0.15);
       if (i === 0) canvasCtx.moveTo(x, y);
       else canvasCtx.lineTo(x, y);
       x += sliceWidth;
@@ -377,7 +314,6 @@ document.addEventListener('DOMContentLoaded', () => {
     canvasCtx.fillStyle = '#040806';
     canvasCtx.fillRect(0, 0, width, height);
 
-    // Flat baseline trace
     canvasCtx.strokeStyle = 'rgba(0, 255, 157, 0.2)';
     canvasCtx.lineWidth = 1;
     canvasCtx.beginPath();
